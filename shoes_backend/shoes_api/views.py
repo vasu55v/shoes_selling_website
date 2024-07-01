@@ -55,3 +55,19 @@ class ColorAndPhotosDeleteViewSet(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     # permission_classes=[AllowAny]
 
+
+class CreateCustomerView(generics.ListCreateAPIView):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerSerializer
+    permission_classes=[AllowAny]
+
+class CustomerDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerDetailSerializer
+    permission_classes=[AllowAny]
+
+
+class VendorDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Vendor.objects.all()
+    serializer_class=VendorSerializer
+    permission_classes=[AllowAny]

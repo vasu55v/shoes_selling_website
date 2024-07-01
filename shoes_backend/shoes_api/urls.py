@@ -4,6 +4,8 @@ from .views import *
 
 urlpatterns = [
 
+    
+
     #shoes
     path('shoes/',shoesListView.as_view()),
     path('shoes-create/',shoesCreateView.as_view()),
@@ -18,4 +20,10 @@ urlpatterns = [
     path('color_photo_delete/<int:pk>/',ColorAndPhotosDeleteViewSet.as_view()),
 
 
+   #customer
+   path('customer/',CreateCustomerView.as_view()),
+   path('customer/<int:pk>/',CustomerDetailView.as_view()),
+
+   #vendor
+   path('vendor/<int:pk>/',VendorDetailView.as_view()),
 ]

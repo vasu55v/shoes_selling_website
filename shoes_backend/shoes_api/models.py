@@ -1,6 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
 # Create your models here.
+
+class Customer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mobile_number=models.IntegerField(null=True,blank=True)
+    address=models.TextField()
+    profile_photo=models.ImageField(upload_to='customer_profile_image')
+
+    def __str__(self):
+        return  f"{self.user.username}----------------------{self.mobile_number}"
+
+    
+class Vendor(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mobile_number=models.IntegerField(null=True,blank=True)
+    profile_photo=models.ImageField(upload_to='vendor_profile_image')
+
+
+    def __str__(self):
+        return  f"{self.user.username}----------------------{self.mobile_number}"
+
+ 
 
 
 FOR_WHOM_CHOICES =(
@@ -26,7 +50,7 @@ SIZE_CHOICES=(
 
 
 class Shoes(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name=models.CharField(max_length=200,null=False,blank=False)
     for_whom=models.CharField(max_length=200,null=False,blank=False, choices = FOR_WHOM_CHOICES,default = 'man')
     gender=models.CharField(max_length=200,null=False,blank=False, choices = GENDER_CHOICES,default = 'man')

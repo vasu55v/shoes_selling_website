@@ -165,3 +165,6 @@ SIMPLE_JWT = {
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'shoes_images')
 MEDIA_URL = '/media/'
+
+
+# AUTH_USER_MODEL = 'shoes_api.CustomUser'
