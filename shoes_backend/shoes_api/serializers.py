@@ -33,16 +33,15 @@ class CustomerDetailSerializer(serializers.ModelSerializer):
 
 
 class ShoesDetailSerializer(serializers.ModelSerializer):
-    user=UserSerializer()
     class Meta:
         model=Shoes
-        fields=['id','user','name','for_whom','gender','size','price','description']
+        fields=['id','name','product_category','gender','size','price','description']
         # fields = '__all__'
 
 class ShoesSerializer(serializers.ModelSerializer):
     class Meta:
         model=Shoes
-        fields=['id','user','name','for_whom','gender','size','price','description']
+        fields=['id','name','product_category','gender','size','price','description']
 
 
 class ColorAndPhotosDetailSerializer(serializers.ModelSerializer):
@@ -55,3 +54,17 @@ class ColorAndPhotosSerializer(serializers.ModelSerializer):
      class Meta:
         model=Color_And_Photos
         fields=['id','shoes','color_name','photos']
+
+
+class OrderSerializer(serializers.ModelSerializer):
+     customer=CustomerSerializer()
+     class Meta:
+        model=Order
+        fields=['id','customer','order_time']
+
+class OrderItemSerializer(serializers.ModelSerializer):
+     order=OrderSerializer()
+     shoes=ShoesSerializer()
+     class Meta:
+        model=Order_item
+        fields=['id','order','shoes','qty','price']

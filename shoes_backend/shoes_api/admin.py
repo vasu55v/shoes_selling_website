@@ -7,5 +7,7 @@ admin.site.register(Shoes)
 admin.site.register(Color_And_Photos)
 admin.site.register(Customer)
 admin.site.register(Vendor)
+admin.site.register(Order)
+admin.site.register(Order_item)
 
 

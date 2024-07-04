@@ -20,10 +20,17 @@ urlpatterns = [
     path('color_photo_delete/<int:pk>/',ColorAndPhotosDeleteViewSet.as_view()),
 
 
-   #customer
-   path('customer/',CreateCustomerView.as_view()),
-   path('customer/<int:pk>/',CustomerDetailView.as_view()),
+    #customer
+    path('customer/',CreateCustomerView.as_view()),
+    path('all_customer/',CustomerDetailView.as_view()),
+    path('customer/<int:pk>/',CustomerDetailView.as_view()),
 
-   #vendor
-   path('vendor/<int:pk>/',VendorDetailView.as_view()),
+    #order_of_customer
+    path('customer/<int:pk>/orderItem/',views.order_of_customer.as_view()),     
+
+    #vendor
+    path('vendor/<int:pk>/',VendorDetailView.as_view()),
+
+      
+
 ]

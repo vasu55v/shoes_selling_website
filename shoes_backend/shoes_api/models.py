@@ -23,9 +23,7 @@ class Vendor(models.Model):
 
     def __str__(self):
         return  f"{self.user.username}----------------------{self.mobile_number}"
-
- 
-
+    
 
 FOR_WHOM_CHOICES =(
     ("men", "men"), 
@@ -34,8 +32,8 @@ FOR_WHOM_CHOICES =(
 ) 
 
 GENDER_CHOICES =( 
-    ("men", "men"), 
-    ("woman", "woman"), 
+    ("male", "male"), 
+    ("female", "female"), 
 ) 
 
 SIZE_CHOICES=( 
@@ -48,11 +46,9 @@ SIZE_CHOICES=(
     ("UK12", "UK12"), 
 ) 
 
-
 class Shoes(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name=models.CharField(max_length=200,null=False,blank=False)
-    for_whom=models.CharField(max_length=200,null=False,blank=False, choices = FOR_WHOM_CHOICES,default = 'man')
+    product_category=models.CharField(max_length=200,null=False,blank=False, choices = FOR_WHOM_CHOICES,default = 'man')
     gender=models.CharField(max_length=200,null=False,blank=False, choices = GENDER_CHOICES,default = 'man')
     size=models.CharField(max_length=200,null=False,blank=False, choices = SIZE_CHOICES,default = 'UK6')
     price=models.DecimalField(max_digits=10, decimal_places=2)
@@ -69,4 +65,19 @@ class Color_And_Photos(models.Model):
     def __str__(self):
         return  f"{self.shoes.name}----------------------{self.color_name}"
 
+
+class Order(models.Model):
+    customer=models.ForeignKey(Customer,on_delete=models.CASCADE,related_name="customer_orders")
+    order_time=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):     
+         return '%s' % (self.order_time)
     
+class Order_item(models.Model):
+    order=models.ForeignKey(Order,on_delete=models.CASCADE)
+    shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)
+    qty=models.IntegerField(default=1)
+    price=models.DecimalField(max_digits=10,decimal_places=2,default=0)
+
+    def __str__(self):     
+         return self.shoes.name

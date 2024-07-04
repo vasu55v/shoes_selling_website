@@ -56,6 +56,8 @@ class ColorAndPhotosDeleteViewSet(generics.DestroyAPIView):
     # permission_classes=[AllowAny]
 
 
+#****************************customer view****************************
+
 class CreateCustomerView(generics.ListCreateAPIView):
     queryset=Customer.objects.all()
     serializer_class=CustomerSerializer
@@ -66,8 +68,23 @@ class CustomerDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=CustomerDetailSerializer
     permission_classes=[AllowAny]
 
+class order_of_customer(generics.ListAPIView):
+    queryset=Order_item.objects.all()
+    serializer_class=OrderItemSerializer
+    permission_classes=[AllowAny]
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        customer_id = self.kwargs["pk"]
+        qs=qs.filter(order__customer__id=customer_id)
+        return qs
+    
+
+
+#****************************vendor view****************************
 
 class VendorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Vendor.objects.all()
     serializer_class=VendorSerializer
     permission_classes=[AllowAny]
+
