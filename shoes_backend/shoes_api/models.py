@@ -14,7 +14,7 @@ class Customer(models.Model):
     def __str__(self):
         return  f"{self.user.username}----------------------{self.mobile_number}"
 
-    
+
 class Vendor(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mobile_number=models.IntegerField(null=True,blank=True)
@@ -46,6 +46,15 @@ SIZE_CHOICES=(
     ("UK12", "UK12"), 
 ) 
 
+SHOES_CATEGORY=( 
+    ("BOOTS", "BOOTS"), 
+    ("CASUALS SHOES ", "CASUALS SHOES "), 
+    ("FLIP FLOPS", "FLIP FLOPS"), 
+    ("FORMAL SHOES", "FORMAL SHOES"), 
+    ("SANDALS & FLOATERS", "SANDALS & FLOATERS"), 
+    ("SPORTS SHOES & SNEAKERS", "SPORTS SHOES & SNEAKERS"), 
+) 
+
 class Shoes(models.Model):
     name=models.CharField(max_length=200,null=False,blank=False)
     product_category=models.CharField(max_length=200,null=False,blank=False, choices = FOR_WHOM_CHOICES,default = 'man')
@@ -56,6 +65,15 @@ class Shoes(models.Model):
 
     def __str__(self):
         return f"{self.name}--------{self.gender}--------{self.price}"
+
+class Category(models.Model):
+    shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)
+    shoes_category_name=models.CharField(max_length=200,null=False,blank=False, choices = SHOES_CATEGORY,default = 'SPORTS SHOES & SNEAKERS')
+    
+    def __str__(self):
+        return  f"{self.shoes.name}----------------------{self.shoes_category_name}"
+
+
     
 class Color_And_Photos(models.Model):
     shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)

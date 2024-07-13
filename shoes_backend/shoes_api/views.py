@@ -4,6 +4,7 @@ from .models import *
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.permissions import IsAdminUser
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -87,4 +88,34 @@ class VendorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Vendor.objects.all()
     serializer_class=VendorSerializer
     permission_classes=[AllowAny]
+
+    
+def VendorPanelView(request):
+    total_shoes=Shoes.objects.all().count()
+    total_order = Order_item.objects.all().count()
+    total_customer = (
+        Order_item.objects.filter().values("order__customer").count()
+    )
+
+    msg = {
+        "total_shoes": total_shoes,
+        "total_order": total_order,
+        "total_customer": total_customer,
+    }
+
+    return JsonResponse(msg)
+
+#****************************category view****************************
+
+class CategoryShoesView(generics.ListAPIView):
+    queryset=Shoes.objects.all()
+    serializer_class=OrderItemSerializer
+    permission_classes=[AllowAny]
+
+    # def get_queryset(self):
+    #     qs=super().get_queryset()
+    #     category_name= self.kwargs["pk"]
+    #     qs=qs.filter(order__customer__id=category_name)
+    #     return qs
+    
 

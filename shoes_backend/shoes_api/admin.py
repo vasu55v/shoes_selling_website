@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
 admin.site.register(Shoes)
+admin.site.register(Category)
 admin.site.register(Color_And_Photos)
 admin.site.register(Customer)
 admin.site.register(Vendor)

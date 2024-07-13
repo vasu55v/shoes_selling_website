@@ -22,7 +22,7 @@ urlpatterns = [
 
     #customer
     path('customer/',CreateCustomerView.as_view()),
-    path('all_customer/',CustomerDetailView.as_view()),
+    path('all_customer/',CreateCustomerView.as_view()),
     path('customer/<int:pk>/',CustomerDetailView.as_view()),
 
     #order_of_customer
@@ -30,6 +30,10 @@ urlpatterns = [
 
     #vendor
     path('vendor/<int:pk>/',VendorDetailView.as_view()),
+    path('vendor/panel/',VendorPanelView),
+
+    #category
+    path('category',CategoryShoesView.as_view()),
 
       
 

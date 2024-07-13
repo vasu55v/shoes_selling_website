@@ -26,9 +26,10 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class CustomerDetailSerializer(serializers.ModelSerializer):
+    user=UserSerializer()
     class Meta:
         model=Customer
-        fields='__all__'
+        fields=['id','user','mobile_number','address','profile_photo']
 
 
 
