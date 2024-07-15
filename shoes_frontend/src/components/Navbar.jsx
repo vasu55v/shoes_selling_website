@@ -26,13 +26,13 @@ const Navbar = () => {
             </a>
             <div className="dropdown-content">
               <a href="#">All Shoes</a>
-              <a href="#">Newest Sneakers</a>
-              <a href="#">Jordan</a>
-              <a href="#">Running</a>
-              <a href="#">Gym and Training</a>
-              <a href="#">Basketball</a>
+              <a href="#">BOOTS</a>
+              <a href="#">CASUALS SHOES</a>
+              <a href="#">FLIP FLOPS</a>
+              <a href="#">FORMAL SHOES</a>
+              <a href="#">SANDALS & FLOATERS  </a>
               <a href="#">Football</a>
-              <a href="#">Sandals and Slides</a>
+              <a href="#">SPORTS SHOES & SNEAKERS</a>
             </div>
           </li>
           <li className="nav-item">
@@ -81,3 +81,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+  
