@@ -20,10 +20,10 @@ const Navbar = () => {
               Home
             </a>
           </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">
+          {/* <li className="nav-item">
+            <a href="#category-card" className="nav-link">
               Category &#129083;
-            </a>
+            </a> 
             <div className="dropdown-content">
               <a href="#">All Shoes</a>
               <a href="#">BOOTS</a>
@@ -33,8 +33,8 @@ const Navbar = () => {
               <a href="#">SANDALS & FLOATERS  </a>
               <a href="#">Football</a>
               <a href="#">SPORTS SHOES & SNEAKERS</a>
-            </div>
-          </li>
+            </div> 
+          </li>*/}
           <li className="nav-item">
             <a href="#" className="nav-link">
               Men

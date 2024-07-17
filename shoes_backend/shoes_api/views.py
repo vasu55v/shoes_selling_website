@@ -13,6 +13,18 @@ class shoesListView(generics.ListAPIView):
     serializer_class=ShoesDetailSerializer
     permission_classes=[AllowAny]
 
+class shoesView(generics.ListAPIView):
+    queryset=Color_And_Photos.objects.all()
+    serializer_class=ColorAndPhotosDetailSerializer
+    permission_classes=[AllowAny]
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        shoes_id=self.kwargs["pk"]
+        qs=qs.filter(shoes=shoes_id)
+        return qs
+    
+
 
 class shoesCreateView(generics.CreateAPIView):
     queryset=Shoes.objects.all()
