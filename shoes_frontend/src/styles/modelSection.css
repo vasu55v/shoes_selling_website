@@ -12,7 +12,6 @@
 
 .second_image_container{
     display: flex;
-
 }
 
 .second_image_container img{
@@ -37,11 +36,111 @@
 
     /* right: 30%; */
 }
-
+/* 
 .inner_second_image_container a:hover{
     background-color: #000;
     color: #fff;
     transition: 0.5s;
     border-radius: 2px;
     padding: 2px 10px;
-}
+} */
+
+@media only screen and (max-width: 1554px) {
+    .image_container img{
+        width: 500px;
+        height: 430px;
+    }
+  }
+
+  @media only screen and (max-width: 1354px) {
+    .image_container img{
+        width: 400px;
+        height: 440px;
+    }
+
+    .second_image_container img{
+        height: auto;
+        width: 300px;
+    }
+  }
+
+@media only screen and (max-width: 1024px) {
+    .image_container img{
+        width: 300px;
+        height: 300px;
+    }
+    
+    .second_image_container img{
+        height: auto;
+        width: 330px;
+    }
+    
+  }
+
+
+  @media only screen and (max-width: 820px) {
+    .image_container img{
+        width: 300px;
+        height: 250px;
+    }
+    
+    .second_image_container img{
+        height: auto;
+        width: 300px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .image_container img{
+        max-width: 250px;
+        max-height: 250px;
+        width: auto;
+        height: auto;
+
+    }
+
+    .second_image_container img{
+        height: 330px;
+        width: 250px;
+    }
+  }
+
+
+  @media only screen and (max-width: 700px) {
+    .image_container img{
+        max-width: 300px;
+        max-height: 250px;
+        width: auto;
+        height: auto;
+        
+    }
+ 
+    .inner_second_image_container img{
+        max-height: 400px;
+        max-width: 400px;
+        height: auto;
+        width: auto;
+    }
+
+
+    .second_image_container img{
+        max-height: 400px;
+        max-width: 400px;
+        height: auto;
+        width: auto;
+    }
+
+    .model_section_container{
+        display: flex;
+        flex-direction: column;
+        margin: 20px 20px;
+    }
+  }
+
+
+  
+  @media only screen and (max-width: 512px) {
+    .img4{
+        display: none;
+    }
+  }
