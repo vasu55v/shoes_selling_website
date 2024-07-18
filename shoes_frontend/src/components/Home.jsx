@@ -5,6 +5,7 @@ import HeroSection from './HeroSection.jsx'
 import LatestProducts from './LatestProducts.jsx'
 import CategoryCrad from './CategoryCard.jsx'
 import ModelSection from './ModelSection.jsx'
+import Footer from './Footer.jsx'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
     <LatestProducts />
     <CategoryCrad />
     <ModelSection />
+    <Footer />
     </>
   )
 }
