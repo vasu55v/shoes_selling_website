@@ -1,6 +1,7 @@
-import React,{useState,useEffect,useRef } from 'react'
+import React,{useState,useEffect,useRef, useContext } from 'react'
 import Navbar from './Navbar'
 import '../styles/allProducts.css'
+import {ScrollContext} from  '../Context.jsx'
 
 
 const Products=[
@@ -91,41 +92,10 @@ const ShoeCard = ({ price, name, image }) => {
 
 
 const Mens = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const scrollRef = useRef(null);
-
-  const scrollUpFunc = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (scrollRef.current && scrollRef.current.scrollTop > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    const scrollContainer = scrollRef.current;
-    console.log(scrollRef.current)
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', toggleVisibility);
-    }
-
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('scroll', toggleVisibility);
-      }
-    };
-  }, []);
-
+ 
+  const context=useContext(ScrollContext);
+  const {isVisible,scrollRef,scrollUpFunc}=context;
+  
   return (
     <div className='all_products_div' ref={scrollRef}>
       <div className='all_products'>

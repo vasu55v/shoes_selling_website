@@ -1,7 +1,7 @@
-import React,{useState,useEffect,useRef } from 'react'
+import React,{useState,useEffect,useRef,useContext } from 'react'
 import Navbar from './Navbar'
 import '../styles/allProducts.css'
-
+import {ScrollContext} from  '../Context.jsx'
 
 const Products=[
   { id: 1,price:10000, name: 'Running Shoes', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png' },
@@ -42,89 +42,10 @@ const ShoeCard = ({ price, name, image }) => {
   );
 };
 
-// const AllProducts = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-
-//   const scrollUpFunc = () => {
-//     window.scrollTo({
-//       top: 0,
-//       behavior: 'smooth',
-//     });
-//   };
-
-//   const toggleVisibility = () => {
-//     if (window.scrollY > 300) {
-//       setIsVisible(true);
-//     } else {
-//       setIsVisible(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     window.addEventListener('scroll', toggleVisibility);
-//     return () => window.removeEventListener('scroll', toggleVisibility);
-//   }, []);  
-
-//   return (
-//     <div className='all_products_div'>
-//       <div className='all_products'>
-//         <div className='navbar'>
-//           <Navbar />
-//         </div>
-//         <div className='shoe-card-grid'>
-//           {Products.map((item) => (
-//             <ShoeCard key={item.id} price={item.price} name={item.name} image={item.image} />
-//           ))}
-//         </div>
-//       </div>
-
-//       {isVisible && (
-//         <button className='up-arrow' onClick={scrollUpFunc} aria-label="Scroll to top">
-//           &#11014; 
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default AllProducts;
-
 
 const Womens = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const scrollRef = useRef(null);
-
-  const scrollUpFunc = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (scrollRef.current && scrollRef.current.scrollTop > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    const scrollContainer = scrollRef.current;
-    console.log(scrollRef.current)
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', toggleVisibility);
-    }
-
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('scroll', toggleVisibility);
-      }
-    };
-  }, []);
+  const context=useContext(ScrollContext);
+  const {isVisible,scrollRef,scrollUpFunc}=context;
 
   return (
     <div className='all_products_div' ref={scrollRef}>

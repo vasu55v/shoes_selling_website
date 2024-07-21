@@ -1,4 +1,5 @@
-import React,{useState,useEffect,useRef } from 'react'
+import React,{useState,useEffect,useRef,useContext } from 'react'
+import {ScrollContext} from  '../Context.jsx'
 import Navbar from './Navbar'
 import '../styles/allProducts.css'
 
@@ -42,42 +43,44 @@ const ShoeCard = ({ price, name, image }) => {
   );
 };
 
-
 const Mens = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const scrollRef = useRef(null);
+  const context = useContext(ScrollContext);
+  const { isVisible, scrollRef, scrollUpFunc } = context;
 
-  const scrollUpFunc = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
+  // const [isVisible, setIsVisible] = useState(false);
+  // const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (scrollRef.current && scrollRef.current.scrollTop > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+  // const scrollUpFunc = () => {
+  //   if (scrollRef.current) {
+  //     scrollRef.current.scrollTo({
+  //       top: 0,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // };
 
-    const scrollContainer = scrollRef.current;
-    console.log(scrollRef.current)
+  // useEffect(() => {
+  //   const toggleVisibility = () => {
+  //     if (scrollRef.current && scrollRef.current.scrollTop > 300) {
+  //       setIsVisible(true);
+  //     } else {
+  //       setIsVisible(false);
+  //     }
+  //   };
 
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', toggleVisibility);
-    }
+  //   const scrollContainer = scrollRef.current;
+  //   console.log(scrollRef.current)
 
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('scroll', toggleVisibility);
-      }
-    };
-  }, []);
+  //   if (scrollContainer) {
+  //     scrollContainer.addEventListener('scroll', toggleVisibility);
+  //   }
+
+  //   return () => {
+  //     if (scrollContainer) {
+  //       scrollContainer.removeEventListener('scroll', toggleVisibility);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <div className='all_products_div' ref={scrollRef}>
