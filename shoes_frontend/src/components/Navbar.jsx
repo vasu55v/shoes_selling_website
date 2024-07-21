@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/navbar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const toggle_function = () => {
@@ -16,8 +16,13 @@ const Navbar = () => {
         <div className="logo">Muniqe</div>
         <ul className="nav-links">
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/" className="nav-link">
               Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/products" className="nav-link">
+              All products
             </a>
           </li>
           {/* <li className="nav-item">
@@ -36,17 +41,17 @@ const Navbar = () => {
             </div> 
           </li>*/}
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/men" className="nav-link">
               Men
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/women" className="nav-link">
               Women
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/kids" className="nav-link">
               Kids
             </a>
           </li>
@@ -57,17 +62,21 @@ const Navbar = () => {
           </li>
         </ul>
         <div classname="cart-icon">
-          <a href="#">
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              className="cart"
-              color="#000"
-            />
+          <a href="#" className="cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#000" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
           </a>
         </div>
         <div classname="menu-toggle" onClick={() => toggle_function()}>
-          <a href="#">
-            <FontAwesomeIcon icon={faBars} className="bars" color="#000" />
+          <a href="#" className="bars">
+          <svg width="30" height="30" viewBox="0 0 100 100">
+            <rect class="bar" width="80" height="10" x="10" y="25" rx="5"></rect>
+            <rect class="bar" width="80" height="10" x="10" y="45" rx="5"></rect>
+            <rect class="bar" width="80" height="10" x="10" y="65" rx="5"></rect>
+          </svg>          
           </a>
         </div>
       </div>

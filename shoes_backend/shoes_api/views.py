@@ -5,7 +5,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.permissions import IsAdminUser
 from django.http import JsonResponse
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 class shoesListView(generics.ListAPIView):
@@ -131,3 +131,20 @@ class CategoryShoesView(generics.ListAPIView):
     #     return qs
     
 
+#****************************infinite scroll****************************
+
+
+def scroll(request):
+    shoes=Shoes.objects.all()
+    paginator=Paginator(shoes,12) #12 shoes per page
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+
+
+    serialized_data=ShoesSerializer(page_obj,many=True)
+
+    return JsonResponse({
+        'data': serialized_data.data,
+        'has_next': page_obj.has_next(),
+        'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None
+    })

@@ -37,5 +37,7 @@ urlpatterns = [
     path('category',CategoryShoesView.as_view()),
 
       
+    #scroll
+    path('scroll/',scroll,name="shoes_scroll")
 
 ]

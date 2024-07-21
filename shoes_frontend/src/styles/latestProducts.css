@@ -35,6 +35,10 @@ margin: 20px 0px;
   margin-bottom: 15px;
 }
 
+.shoe-image:hover{
+  scale: 1.05;
+}
+
 .shoe-name {
   font-family: Arial, sans-serif;
   font-size: 18px;

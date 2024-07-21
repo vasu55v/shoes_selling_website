@@ -3,12 +3,25 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './components/Home'
+import AllProducts from './components/AllProducts'
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Mens from './components/Men';
+import Womens from './components/Womens';
+import Kids from './components/Kids';
 
 function App() {
 
   return (
     <>
-      <Home />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/men" element={<Mens />} />
+          <Route path="/Women" element={<Womens />} />
+          <Route path="/kids" element={<Kids />} />
+        </Routes>
+    </Router>
     </>
   )
 }
