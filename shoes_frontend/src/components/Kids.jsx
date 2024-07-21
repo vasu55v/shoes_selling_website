@@ -83,11 +83,10 @@ const Mens = () => {
   // }, []);
 
   return (
+    <>          
+    <Navbar />
     <div className='all_products_div' ref={scrollRef}>
       <div className='all_products'>
-        <div className='navbar'>
-          <Navbar />
-        </div>
         <div className='men_title'>
             <h1>Kid's shoes</h1>
             <center><hr /></center>
@@ -105,6 +104,7 @@ const Mens = () => {
         </button>
       )}
     </div>
+    </>
   );
 };
 
