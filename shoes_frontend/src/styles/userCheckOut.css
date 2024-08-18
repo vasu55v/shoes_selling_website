@@ -1,0 +1,126 @@
+.userCheckOutContainer{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}
+
+
+@media screen and (max-width: 880px) {
+    .userCheckOutContainer{
+        display:flex;
+        flex-direction:column ;
+        justify-content: center;
+        margin: 20px;
+    
+    }
+}
+
+.text_checkout{
+    text-align: center;
+    font-family: intern;
+    font-size: 60px;
+}
+
+.container {
+    max-width:600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: intern;
+}
+
+form{
+    max-width: 600px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    border-bottom: 1px solid #dadada;
+    max-width: 400px;
+    padding:10px ;
+    margin-bottom:20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+    color: #555555c4;
+}
+
+.input_field {
+    width: 100% ;
+    padding: 8px;
+    border: 1px solid #74747452;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000ce;
+    color: rgba(255, 255, 255, 0.746);
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+        font-size: 14px;
+    }
+
+    input[type="submit"] {
+        font-size: 16px;
+    }
+}
+
+.second_container{
+    background-color: #dadada92;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+
+.Order_summery h1{
+   text-transform: uppercase;
+   font-family: intern;
+   text-align: center;
+   padding: 0px 50px;
+}
+
+
+@media screen and (max-width: 880px) {
+    .Order_summery h1{
+       font-size: 20px;
+     }
+}
+.Order_summery table{
+    margin: 10px auto;
+}
+
+
+.Order_summery table td{
+    padding:20px;
+}

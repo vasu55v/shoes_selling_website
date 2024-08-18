@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Mens from './components/Men';
 import Womens from './components/Womens';
 import Kids from './components/Kids';
+import UserCheckOut from './components/UserCheckOut';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/men" element={<Mens />} />
           <Route path="/Women" element={<Womens />} />
           <Route path="/kids" element={<Kids />} />
+          <Route path="/UserCheckOut" element={<UserCheckOut />} />
         </Routes>
     </Router>
     </>

@@ -43,54 +43,6 @@ const ShoeCard = ({ price, name, image }) => {
   );
 };
 
-// const AllProducts = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-
-//   const scrollUpFunc = () => {
-//     window.scrollTo({
-//       top: 0,
-//       behavior: 'smooth',
-//     });
-//   };
-
-//   const toggleVisibility = () => {
-//     if (window.scrollY > 300) {
-//       setIsVisible(true);
-//     } else {
-//       setIsVisible(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     window.addEventListener('scroll', toggleVisibility);
-//     return () => window.removeEventListener('scroll', toggleVisibility);
-//   }, []);  
-
-//   return (
-//     <div className='all_products_div'>
-//       <div className='all_products'>
-//         <div className='navbar'>
-//           <Navbar />
-//         </div>
-//         <div className='shoe-card-grid'>
-//           {Products.map((item) => (
-//             <ShoeCard key={item.id} price={item.price} name={item.name} image={item.image} />
-//           ))}
-//         </div>
-//       </div>
-
-//       {isVisible && (
-//         <button className='up-arrow' onClick={scrollUpFunc} aria-label="Scroll to top">
-//           &#11014; 
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default AllProducts;
-
-
 const Mens = () => {
  
   const context=useContext(ScrollContext);

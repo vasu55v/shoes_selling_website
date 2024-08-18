@@ -16,7 +16,8 @@
 }
 
 .title_footer{
-    margin: 0px 65px;
+    margin: 0px 65px 10px 20px;
+    float: left;
 }
 
 .footer_inner_container_section span{
@@ -25,7 +26,7 @@
 
 @media (max-width: 600px) {
     .footer_inner_container_section span{
-        margin-right: 5px;
+        margin-right: 10px;
     }
 }
 
@@ -37,7 +38,7 @@
     }
 
     .footer_inner_container_section span{
-        margin-right: 0px;
+        margin-right:5px;
     }
 }
 

@@ -112,6 +112,7 @@
         max-height: 250px;
         width: auto;
         height: auto;
+        display: none;
         
     }
  
@@ -122,12 +123,26 @@
         width: auto;
     }
 
+    .second_image_container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 
     .second_image_container img{
         max-height: 400px;
         max-width: 400px;
         height: auto;
         width: auto;
+       
+    }
+    .second_image_container .img4{
+        max-height: 400px;
+        max-width: 400px;
+        height: auto;
+        width: auto;
+        display: none;
     }
 
     .model_section_container{
