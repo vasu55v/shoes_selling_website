@@ -23,7 +23,7 @@
 }
 
 .container {
-    max-width:600px;
+    width:600px;
     margin: 0 auto;
     background-color: #ffffff;
     padding: 20px;
@@ -31,7 +31,7 @@
     font-family: intern;
 }
 
-form{
+.address_form{
     max-width: 600px;
 }
 
@@ -55,8 +55,8 @@ label {
     color: #555555c4;
 }
 
-.input_field {
-    width: 100% ;
+form input{
+    width:100%;
     padding: 8px;
     border: 1px solid #74747452;
     border-radius: 4px;
@@ -84,13 +84,16 @@ input[type="submit"]:hover {
         padding: 10px;
     }
 
-    input[type="text"],
-    input[type="tel"] {
+    .input_field {
         font-size: 14px;
     }
 
     input[type="submit"] {
         font-size: 16px;
+    }
+
+    .container {
+        width:313px;
     }
 }
 
@@ -99,6 +102,7 @@ input[type="submit"]:hover {
     max-width: 600px;
     margin: 0 auto;
     border-radius: 10px;
+    height: auto;
 }
 
 
@@ -114,8 +118,10 @@ input[type="submit"]:hover {
 @media screen and (max-width: 880px) {
     .Order_summery h1{
        font-size: 20px;
-     }
+     } 
 }
+
+
 .Order_summery table{
     margin: 10px auto;
 }

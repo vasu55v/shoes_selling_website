@@ -53,7 +53,7 @@ const UserCheckOut = () => {
     </div>
     <div class="container">
         <center><h2>Shipping Address</h2></center>
-        <form>
+        <form className='address_form'>
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input className="input_field" type="text" id="firstName" name="firstName" required/>
