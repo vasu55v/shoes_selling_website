@@ -10,6 +10,8 @@ import Womens from './components/Womens';
 import Kids from './components/Kids';
 import UserCheckOut from './components/UserCheckOut';
 import Login from './components/Login';
+import Register from './components/Register';
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/kids" element={<Kids />} />
           <Route path="/UserCheckOut" element={<UserCheckOut />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
     </Router>
     </>

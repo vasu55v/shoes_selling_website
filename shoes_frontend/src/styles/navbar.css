@@ -127,6 +127,7 @@ padding-left: 2px;
   border-radius: 10px;
   background: transparent;
   border: 1px solid #dadada;
+  color: #000;  
 }
 
 .search_btn:hover{
