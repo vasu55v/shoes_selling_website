@@ -1,0 +1,104 @@
+.nav_Section_login{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-family: intern;
+}
+
+.nav_Section_login h1{
+    color: #b1b1b1;
+}
+
+.nav_Section_login button{
+    border:2px solid #dadada;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.middle_text{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: intern;
+}
+
+.middle_text span{
+    background: -webkit-linear-gradient(#010101, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.outer_login_container{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin:20px 0px;
+}
+
+.login_with_google{
+    display: flex;
+    border: 1px solid #656565;
+    border-radius: 4px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+}
+
+.login_with_google p{
+    padding-left: 20px;
+    margin: 0 auto;
+    margin-top: 7px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000ca;
+    font-family: inter;
+}
+
+.login_with_google img{
+    width: 30px;
+    height: 35px;
+    padding: 4px 0px;
+}
+
+.login_container{
+    border: 1px solid #cdcdcd;
+    max-width: 400px;
+    border-radius: 10px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.email_password input{
+   padding: 13px 0px;
+   width: 100%;
+   text-align: center;
+   border-radius: 10px;
+   border: 1px solid #a3a3a3;
+   margin:5px 0px;
+}
+
+.email_password button{
+    border: 1px solid #a0a0a0;
+    background: transparent;
+    padding: 10px 0px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.email_password button:hover{
+    background: #1c1c1caf;
+    transition: 0.3s;
+    color: #dadada;
+}
+
+.else_container{
+    text-align: center;
+    /* margin: 10px 0px; */
+}
+
+.link_a{
+    margin-top: 10px;
+}

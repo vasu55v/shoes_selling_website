@@ -9,6 +9,7 @@ import Mens from './components/Men';
 import Womens from './components/Womens';
 import Kids from './components/Kids';
 import UserCheckOut from './components/UserCheckOut';
+import Login from './components/Login';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Women" element={<Womens />} />
           <Route path="/kids" element={<Kids />} />
           <Route path="/UserCheckOut" element={<UserCheckOut />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
     </Router>
     </>
