@@ -148,3 +148,28 @@ def scroll(request):
         'has_next': page_obj.has_next(),
         'next_page_number': page_obj.next_page_number() if page_obj.has_next() else None
     })
+
+
+#****************************Customer review****************************
+
+class CustomerReviewView(generics.ListCreateAPIView):
+    queryset=Shoes_review.objects.all()
+    serializer_class=ReviewSerializer
+    permission_classes=[AllowAny]
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        product_id=self.kwargs["id"]
+        qs=qs.filter(shoes__id=product_id)
+        return qs
+
+class CustomerReviewDeleteView(generics.DestroyAPIView):
+    queryset=Shoes_review.objects.all()
+    serializer_class=ReviewSerializer
+    permission_classes=[AllowAny]
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        review_id=self.kwargs["id"]
+        qs=qs.filter(id=review_id)
+        return qs

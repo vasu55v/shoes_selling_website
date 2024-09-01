@@ -99,3 +99,18 @@ class Order_item(models.Model):
 
     def __str__(self):     
          return self.shoes.name
+    
+class Shoes_review(models.Model):
+    shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)
+    customer=models.ForeignKey(Customer,on_delete=models.CASCADE)
+    review_star=models.IntegerField()
+    comment = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not (1 <= self.review_star <= 5):
+            raise ValueError("Rating must be between 1 and 5")
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Review by User {self.customer.user.username} on {self.shoes.name}'

@@ -10,5 +10,7 @@ admin.site.register(Customer)
 admin.site.register(Vendor)
 admin.site.register(Order)
 admin.site.register(Order_item)
+admin.site.register(Shoes_review)
+
 
 
