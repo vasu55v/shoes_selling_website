@@ -29,7 +29,7 @@ urlpatterns = [
 
     #customer review
     path('product/<int:id>/customer-review/',CustomerReviewView.as_view()),
-    path('product/customer-review/<int:id>/delete/',CustomerReviewDeleteView.as_view()),
+    path('product/customer-review/<str:pk>/delete/',CustomerReviewDeleteView.as_view()),
 
 
     #order_of_customer

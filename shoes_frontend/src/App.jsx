@@ -11,6 +11,7 @@ import Kids from './components/Kids';
 import UserCheckOut from './components/UserCheckOut';
 import Login from './components/Login';
 import Register from './components/Register';
+import UserProfile from './components/UserProfile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<AllProducts />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="/men" element={<Mens />} />
           <Route path="/Women" element={<Womens />} />
           <Route path="/kids" element={<Kids />} />

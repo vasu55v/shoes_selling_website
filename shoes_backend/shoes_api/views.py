@@ -163,13 +163,13 @@ class CustomerReviewView(generics.ListCreateAPIView):
         qs=qs.filter(shoes__id=product_id)
         return qs
 
-class CustomerReviewDeleteView(generics.DestroyAPIView):
+class CustomerReviewDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Shoes_review.objects.all()
     serializer_class=ReviewSerializer
     permission_classes=[AllowAny]
 
     def get_queryset(self):
         qs=super().get_queryset()
-        review_id=self.kwargs["id"]
+        review_id=self.kwargs["pk"]
         qs=qs.filter(id=review_id)
         return qs
