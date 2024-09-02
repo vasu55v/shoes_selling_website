@@ -88,7 +88,7 @@
         margin-top: 4%;
     }
 }
-
+/* 
 @media only screen and (max-width: 700px) {
     .hero-row {
         flex-direction: column;
@@ -119,6 +119,67 @@
         font-size: 20px;
     }
 
+
+    .hero_btn {
+        padding: 10px 40px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: 1px solid #4d4d4d;
+        margin-left: 30%;
+        margin-top: 8%;
+    }
+} */
+
+@media only screen and (max-width: 700px) {
+    .hero-row {
+        flex-direction: column;
+    }
+
+    .home_shoes_img {
+        rotate: -30deg;
+        height: 400px;
+        margin-bottom: -50px;
+        margin-top: -40px;
+        margin-left: 100px;
+    }
+
+    .home_shoes_img:hover {
+        scale: 1.10;
+        transition: 1s;
+    }
+
+    .second h1 {
+        margin-top: -1px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .second p {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .hero_btn {
+        padding: 10px 40px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: 1px solid #4d4d4d;
+        margin-left: 38%;
+        margin-top: 8%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    .home_shoes_img {
+        rotate: -30deg;
+        height: 400px;
+        margin-bottom: -50px;
+        margin-top: -40px;
+        margin-left: 5px;
+    }
 
     .hero_btn {
         padding: 10px 40px;

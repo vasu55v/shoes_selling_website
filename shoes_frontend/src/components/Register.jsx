@@ -1,13 +1,18 @@
 import React from 'react'
 import '../styles/register.css'
+import { useNavigate } from 'react-router-dom'
 // import google from '../assets/google.png'
 
 const Register = () => {
+  const navigate=useNavigate();
+    const redirectToHome=()=>{
+        navigate('/')
+    }
   return (
     <div>
         <div className='nav_Section_login'>
         <h1>Muniqe</h1>
-        <button>About us</button>
+        <button onClick={redirectToHome}>Home</button>
         </div>
         <div className='middle_text'>Start with <span>Muniqe</span></div>
         <div className='outer_register_container'>

@@ -1,9 +1,13 @@
 import React from "react";
 import "../styles/navbar.css";
+import { useNavigate } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+
+  const navigate=useNavigate();
+
   const toggle_function = () => {
     const navLinks = document.querySelector(".nav-links");
     navLinks.classList.toggle("active");
@@ -56,12 +60,17 @@ const Navbar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
-              Contact
+            <a href="/login" className="nav-link">
+              Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/register" className="nav-link">
+              <b>SignUp</b>
             </a>
           </li>
         </ul>
-        <div classname="cart-icon">
+        <div className="cart-icon" onClick={()=>navigate('/UserCheckOut')}>
           <a href="#" className="cart">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#000" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>

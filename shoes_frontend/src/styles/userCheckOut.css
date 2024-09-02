@@ -23,7 +23,8 @@
 }
 
 .container {
-    width:600px;
+    max-width:600px;
+    width: 100%;
     margin: 0 auto;
     background-color: #ffffff;
     padding: 20px;
@@ -130,3 +131,14 @@ input[type="submit"]:hover {
 .Order_summery table td{
     padding:20px;
 }
+
+/* @media screen and (max-width: 630px) {
+    .container {
+        width:auto;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        font-family: intern;
+    }
+} */

@@ -3,9 +3,10 @@
     padding: 0;
     box-sizing: border-box;
    overflow-x: hidden;
+
   }
   
   body {
-    font-family: Arial, sans-serif;
+    font-family: intern;
   }
   

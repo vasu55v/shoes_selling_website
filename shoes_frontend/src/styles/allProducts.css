@@ -104,8 +104,8 @@
   }
 
   .men_title hr{
-    border: 1px solid #000;
-    width: 400px;
+    border: 1px solid #00000042;
+    width: 350px;
   }
 
 @media (max-width: 600px) {

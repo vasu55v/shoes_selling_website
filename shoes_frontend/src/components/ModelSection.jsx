@@ -19,7 +19,7 @@ const ModelSection = () => {
         <div className='second_image_container'>
             <div className='inner_second_image_container'>
                <img src={nike_model} className="img3" alt='image' />
-               <a href='#'>All product</a>
+               <center><a href='#'>All product</a></center>
             </div>
                <img src={nike_model2} className="img4" alt='image' />
 

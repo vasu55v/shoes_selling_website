@@ -1,13 +1,18 @@
 import React from 'react'
 import '../styles/login.css'
 import google from '../assets/google.png'
+import { redirect, useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    const navigate=useNavigate();
+    const redirectToHome=()=>{
+        navigate('/')
+    }
   return (
     <div>
         <div className='nav_Section_login'>
         <h1>Muniqe</h1>
-        <button>About us</button>
+        <button onClick={redirectToHome}>Home</button>
         </div>
         <div className='middle_text'>
             Start exploring unique/rare <br />Shoes with <span>Muniqe</span>
@@ -18,6 +23,7 @@ const Login = () => {
                 <img src={google}/>
                 <p>Login With Google</p>
             </div>
+            <center><u>or</u></center>
             <div className='email_password'>
                 <input type="email" placeholder='Enter your email:'/>
                 <br />

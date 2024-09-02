@@ -40,7 +40,10 @@
 }
 
 .nav-item:hover{
-    border-bottom: 2px solid #000;
+    /* border-bottom: 1px solid #000; */
+    scale: 0.95;
+    background-color: #0000000a;
+    border-radius: 10px;
 }
 
 .nav-link {
@@ -139,7 +142,7 @@ padding-left: 2px;
         position: fixed;
         top: 60px;
         left: -100%;
-        background-color: #e1e1e16f;
+        background-color: #ffffffea;
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
