@@ -100,6 +100,10 @@ class Order_item(models.Model):
     def __str__(self):     
          return self.shoes.name
     
+# class ConfirmOrderWithAddress(models.Model):
+#     Order_item=models.ForeignKey(Order_item,on_delete=models.CASCADE)
+
+    
 class Shoes_review(models.Model):
     shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)
     customer=models.ForeignKey(Customer,on_delete=models.CASCADE)

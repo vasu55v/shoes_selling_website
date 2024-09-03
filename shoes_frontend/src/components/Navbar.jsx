@@ -44,11 +44,11 @@ const Navbar = () => {
               <a href="#">SPORTS SHOES & SNEAKERS</a>
             </div> 
           </li>*/}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a href="/men" className="nav-link">
               Men
             </a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a href="/women" className="nav-link">
               Women
@@ -57,6 +57,11 @@ const Navbar = () => {
           <li className="nav-item">
             <a href="/kids" className="nav-link">
               Kids
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/userprofile" className="nav-link">
+              My Profile
             </a>
           </li>
           <li className="nav-item">

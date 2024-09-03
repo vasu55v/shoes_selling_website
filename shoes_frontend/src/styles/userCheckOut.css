@@ -1,10 +1,41 @@
+.etr_hr{
+    border: 1px solid #b7b7b74b;
+}
+
+.nav_Section_login{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-family: intern;
+}
+
+.nav_Section_login h1{
+    color: #b1b1b1;
+}
+
+.nav_Section_login button{
+    border:2px solid #dadada;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    color: #010101;
+    cursor: pointer;
+}
+
+
 .userCheckOutContainer{
     display: flex;
     justify-content: center;
     margin: 20px;
-
 }
 
+/* form textarea{
+    width:100%;
+    padding: 8px;
+    border: 1px solid #74747452;
+    border-radius: 4px;
+    font-size: 16px;
+} */
 
 @media screen and (max-width: 880px) {
     .userCheckOutContainer{
@@ -57,6 +88,14 @@ label {
 }
 
 form input{
+    width:100%;
+    padding: 8px;
+    border: 1px solid #74747452;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form textarea{
     width:100%;
     padding: 8px;
     border: 1px solid #74747452;

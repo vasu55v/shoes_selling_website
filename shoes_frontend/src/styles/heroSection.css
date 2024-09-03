@@ -5,12 +5,17 @@
 
 .home_shoes_img {
     rotate: -30deg;
-    margin-right: 300px;
+    padding-top: 30px;
+    margin-right: 300px; 
+    max-width: 700px;
+    width: auto;
+    max-height: 500px;
+    height: auto;
 }
 
 .home_shoes_img:hover {
-    scale: 1.10;
-    transition: 1s;
+    scale: 0.95;
+    transition: 1s ease-in-out;
 }
 
 .second h1 {
@@ -37,32 +42,40 @@
     border: 1px solid #4d4d4d;
     margin-left: 40%;
     margin-top: 2%;
+    color: #000;
 }
 
 .hero_btn:hover {
     scale: 0.95;
+}
+@media only screen and (max-width: 1280px) {
+    .home_shoes_img {
+        rotate: -30deg;
+        margin-top: 50px;
+        height: 400px;
+        margin-bottom: -50px;
+        margin-left:-7px;
+    }
+
 }
 
 @media only screen and (max-width: 1140px) {
 
 
     .first {
-        width: 600px;
+        width: 620px;
     }
 
     .home_shoes_img {
         rotate: -30deg;
-        height: 400px;
-        /* width: auto; */
+        /* margin-top: 50px; */
+        height: 300px;
         margin-bottom: -50px;
-        margin-top: -40px;
-        margin-left: -60px;
+        /* margin-top: -0px; */
+        margin-left:-7px;
+        /* padding-left: -30px; */
     }
 
-    .home_shoes_img:hover {
-        scale: 1.10;
-        transition: 1s;
-    }
 
 
     .second h1 {
@@ -130,7 +143,7 @@
     }
 } */
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 740px) {
     .hero-row {
         flex-direction: column;
     }
@@ -141,11 +154,6 @@
         margin-bottom: -50px;
         margin-top: -40px;
         margin-left: 100px;
-    }
-
-    .home_shoes_img:hover {
-        scale: 1.10;
-        transition: 1s;
     }
 
     .second h1 {
@@ -175,10 +183,30 @@
 
     .home_shoes_img {
         rotate: -30deg;
-        height: 400px;
+        height: 340px;
         margin-bottom: -50px;
         margin-top: -40px;
-        margin-left: 5px;
+        /* margin-left: 1px; */
+    }
+
+    .hero_btn {
+        padding: 10px 40px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: 1px solid #4d4d4d;
+        margin-left: 30%;
+        margin-top: 8%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .home_shoes_img {
+        rotate: -30deg;
+        height: 300px;
+        margin-bottom: -50px;
+        margin-top: -40px;
+        margin-left: 40px;
     }
 
     .hero_btn {
@@ -195,9 +223,9 @@
 
     .home_shoes_img {
         rotate: -30deg;
-        height: 400px;
-        margin-bottom: -50px;
-        margin-top: -40px;
+        height: 300px;
+        margin-bottom:20px;
+        margin-top: 40px;
         margin-left: 5px;
     }
 }

@@ -1,10 +1,21 @@
 import React from 'react'
 import '../styles/userCheckOut.css'
+import { redirect, useNavigate } from 'react-router-dom'
 
 
 const UserCheckOut = () => {
+    const navigate=useNavigate();
+    const redirectToHome=()=>{
+        navigate('/')
+    }
+
   return (
     <>
+    <div className='nav_Section_login'>
+        <h1>Muniqe</h1>
+        <button onClick={redirectToHome}>Home</button>
+    </div>
+    <hr className='etr_hr'/>
     <h1 className='text_checkout'>CheckOut</h1>
     <div className='userCheckOutContainer'>
         
@@ -43,7 +54,7 @@ const UserCheckOut = () => {
                     </tr>
                     <hr />
                     <tr className='table_total'>
-                        <td>Total</td>
+                        <td>Total=</td>
                         <td>$2000</td>
                     </tr>
                     <hr />
@@ -54,14 +65,14 @@ const UserCheckOut = () => {
     <div class="container">
         <center><h2>Shipping Address</h2></center>
         <form className='address_form'>
-            <div class="form-group">
+            {/* <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input className="input_field" type="text" id="firstName" name="firstName" required/>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
                 <input className="input_field" type="text" id="lastName" name="lastName" required/>
-            </div>
+            </div> 
             <div class="form-group">
                 <label for="streetAddress">Street Address</label>
                 <input className="input_field" type="text" id="streetAddress" name="streetAddress" required/>
@@ -69,6 +80,11 @@ const UserCheckOut = () => {
             <div class="form-group">
                 <label for="building">Building / Home / Apartment</label>
                 <input className="input_field" type="text" id="building" name="building"/>
+            </div>
+            */}
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address"></textarea>
             </div>
             <div class="form-group">
                 <label for="city">City</label>
