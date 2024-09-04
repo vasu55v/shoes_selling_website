@@ -11,6 +11,8 @@ admin.site.register(Vendor)
 admin.site.register(Order)
 admin.site.register(Order_item)
 admin.site.register(Shoes_review)
+admin.site.register(OrderStatusByVendor)
+
 
 
 

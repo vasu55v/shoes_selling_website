@@ -173,6 +173,25 @@ class CustomerReviewDeleteView(generics.RetrieveUpdateDestroyAPIView):
         review_id=self.kwargs["pk"]
         qs=qs.filter(id=review_id)
         return qs
+    
+
+#****************************Order status status****************************
+class OrderStatusView(generics.ListCreateAPIView):
+    queryset=OrderStatusByVendor.objects.all()
+    serializer_class=OrderStatusSerializer                                              
+    permission_classes=[AllowAny]
+
+class OrderStatusUpdateView(generics.RetrieveUpdateAPIView):
+    queryset=OrderStatusByVendor.objects.all()
+    serializer_class=OrderStatusSerializer                                              
+    permission_classes=[AllowAny]
+
+    # def get_queryset(self):
+    #     qs=super().get_queryset()
+    #     order_status_id=self.kwargs["pk"]
+    #     qs=qs.filter(id=order_status_id)
+    #     return qs
+    
 
 
 # def vendorPanel(request):

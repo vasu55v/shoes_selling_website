@@ -35,6 +35,12 @@ urlpatterns = [
     #order_of_customer
     path('customer/<int:pk>/orderItem/',views.order_of_customer.as_view()),     
 
+    #order status change url for vendor
+    path('OrderStatus/',views.OrderStatusView.as_view()),  
+    path('OrderStatus/<str:pk>/',views.OrderStatusUpdateView.as_view()),     
+   
+
+
     #vendor
     path('vendor/<int:pk>/',VendorDetailView.as_view()),
     path('vendor/panel/',VendorPanelView),

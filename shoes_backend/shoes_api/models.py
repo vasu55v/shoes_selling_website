@@ -100,6 +100,13 @@ class Order_item(models.Model):
     def __str__(self):     
          return self.shoes.name
     
+class OrderStatusByVendor(models.Model):
+    order_item=models.ForeignKey(Order_item,on_delete=models.CASCADE)
+    order_status=models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Order status of shoes {self.order_item.shoes.name} is {self.order_status}'
+    
 # class ConfirmOrderWithAddress(models.Model):
 #     Order_item=models.ForeignKey(Order_item,on_delete=models.CASCADE)
 

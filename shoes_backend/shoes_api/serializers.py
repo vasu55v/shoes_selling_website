@@ -70,9 +70,20 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model=Order_item
         fields=['id','order','shoes','qty','price']
 
+class OrderItemNormalSerializer(serializers.ModelSerializer):
+     class Meta:
+        model=Order_item
+        fields=['id','order','shoes','qty','price']
+
 class ReviewSerializer(serializers.ModelSerializer):
     shoes=ShoesSerializer()
     customer=CustomerSerializer()
     class Meta:
         model=Shoes_review
         fields=['id','shoes','customer','review_star','comment','created_at']
+
+class OrderStatusSerializer(serializers.ModelSerializer):
+    # order_item=OrderItemNormalSerializer()
+    class Meta:
+        model=OrderStatusByVendor
+        fields=['id','order_item','order_status']
