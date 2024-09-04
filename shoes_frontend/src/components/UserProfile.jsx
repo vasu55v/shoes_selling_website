@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 // import { ToastContainer, toast } from 'react-toastify';
 
+
 const UserProfile = () => {
 
   const navigate=useNavigate();
@@ -189,15 +190,19 @@ const UserProfile = () => {
           </button>
         </div>
         <div className="user_profile_div_second">
+        <p>My Orders</p>
+          <button className="check_order_btn" onClick={()=>navigate('/UserOrder')}>
+           Check Order status
+          </button>
+          <br />
+          <hr className="hr_box"/>
+          <br />
           <p>Account Management</p>
           <button className="logout_btn" onClick={()=>navigate('/Logout')}>
            Log out
-          </button>
+          </button>     
         </div>
       </div>
-      {/* <div className="Footer_section">
-        
-      </div> */}
     </div>
     <Footer />
     </>

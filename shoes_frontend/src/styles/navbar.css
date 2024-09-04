@@ -109,6 +109,11 @@
     margin-left: 1rem;
 }
 
+.cart-icon p{
+    font-size: 12px;
+    font-weight: 900;
+}
+
 .cart{
    display: flex;
     text-decoration: none;

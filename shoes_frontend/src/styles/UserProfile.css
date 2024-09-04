@@ -22,8 +22,20 @@
   width: 100%;
 }
 
-.user_profile,
-.user_profile_div_second {
+.user_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #CFCDC9;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #f0eee520 0%, #f4f2ec43 100%);
+}
+
+.user_profile_div_second{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -64,7 +76,8 @@
 }
 
 .submit_btn,
-.logout_btn {
+.logout_btn,
+.check_order_btn {
   display: flex;
   width: 100%;
   height: 54px;
@@ -76,7 +89,10 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border: none;
+  font-family: intern;
 }
+
 
 .submit_btn {
   background: #252219;
@@ -88,8 +104,16 @@
   color: #fff;
 }
 
+.check_order_btn{
+  background:linear-gradient(10deg,#00ff40,rgb(0, 255, 94));
+  color: #000000;
+  border:1px solid #dadada;
+  font-weight: 600;
+}
+
 .submit_btn:hover,
-.logout_btn:hover {
+.logout_btn:hover,
+.check_order_btn:hover {
   opacity: 0.9;
 }
 
@@ -99,6 +123,11 @@
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 20px;
+}
+
+.hr_box{
+  border: 1px solid #00000065;
+  width: 100%;
 }
 
 @media only screen and (min-width: 1024px) {

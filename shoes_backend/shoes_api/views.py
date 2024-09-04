@@ -173,3 +173,10 @@ class CustomerReviewDeleteView(generics.RetrieveUpdateDestroyAPIView):
         review_id=self.kwargs["pk"]
         qs=qs.filter(id=review_id)
         return qs
+
+
+# def vendorPanel(request):
+#     total_customer=Customer.objects.all().count()
+#     total_order=Order.objects.all().count()
+
+    

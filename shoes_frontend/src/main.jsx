@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { ScrollProvider } from './Context.jsx'
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ScrollProvider>
 

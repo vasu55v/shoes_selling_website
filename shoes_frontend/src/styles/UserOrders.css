@@ -1,0 +1,45 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 4px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.product-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.product-price {
+    font-size: 1.1em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.product-status {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}

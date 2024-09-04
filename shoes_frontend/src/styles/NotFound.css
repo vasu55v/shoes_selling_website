@@ -1,0 +1,29 @@
+.outer_main_con{
+ 
+}
+
+.main_con{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+h1 {
+    color: #333333;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+p {
+    color: #666666;
+    font-size: 18px;
+}

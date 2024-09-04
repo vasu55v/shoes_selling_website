@@ -13,6 +13,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import VendorPanel from './components/VendorPanel';
+import NotFound from './components/NotFound';
+import UserOrders from './components/UserOrders';
+
 
 
 function App() {
@@ -28,9 +31,11 @@ function App() {
           <Route path="/Women" element={<Womens />} />
           <Route path="/kids" element={<Kids />} />
           <Route path="/UserCheckOut" element={<UserCheckOut />} />
+          <Route path="/UserOrder" element={<UserOrders />} />
           <Route path="/VendorPanel" element={<VendorPanel />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
     </>

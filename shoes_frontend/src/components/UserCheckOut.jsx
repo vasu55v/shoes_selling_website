@@ -62,7 +62,7 @@ const UserCheckOut = () => {
             </table>
         </div>
     </div>
-    <div class="container">
+    <div class="con">
         <center><h2>Shipping Address</h2></center>
         <form className='address_form'>
             {/* <div class="form-group">

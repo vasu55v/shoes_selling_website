@@ -1,13 +1,14 @@
 import React from "react";
 import "../styles/vendorPanel.css";
 import Navbar from "./Navbar";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const VendorPanel = () => {
   return (
     <>
       <Navbar />
       <hr />
-      <div className="container">
+      <div className="container1">
         <h1>Vendor Dashboard</h1>
         <div className="dashboard">
           <div className="card">

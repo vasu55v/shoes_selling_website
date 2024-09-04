@@ -3,6 +3,7 @@
   text-align: center;
   width: 300px;
   margin: 20px 0px;
+  font-family: intern;
   }
 
   .scroll_category_div{
@@ -69,9 +70,15 @@
     background-color: #000000;
     color: #ffffff;
   }
+
+  .latest_text{
+    font-size: 30px;
+    }
   
   @media (max-width: 600px) {
     .category-card-grid {
       grid-template-columns: 1fr;
     }
+
+    
   }
