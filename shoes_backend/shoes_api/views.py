@@ -6,6 +6,17 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.permissions import IsAdminUser
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django.db import IntegrityError
+
+
+
+from django.contrib.auth.models import User
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+# jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+# jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 # Create your views here.
 
 class shoesListView(generics.ListAPIView):
@@ -71,7 +82,55 @@ class ColorAndPhotosDeleteViewSet(generics.DestroyAPIView):
 
 #****************************customer view****************************
 
-class CreateCustomerView(generics.ListCreateAPIView):
+def customer_register_view(request):
+    first_name=request.POST.get('first_name')
+    last_name=request.POST.get('last_name')
+    email=request.POST.get('email')
+    username=request.POST.get('first_name')
+    password=request.POST.get('password')
+    address=request.POST.get('address')
+    mobile_number=request.POST.get('mobile_number')
+    profile_photo=request.POST.get('profile_photo')
+
+    
+    try:
+        user=User.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            username=username,
+            password=password,
+        )
+
+        if user:
+            try:
+              customer= Customer.objects.create(
+                  user=user,
+                  mobile_number=mobile_number,
+                  address=address,
+                  profile_photo=profile_photo,
+              )
+
+              message = {
+                    "bool": True,
+                    "user": user.id,
+                    "customer_id": customer.id,
+                    "message": "Thanks for registration. Now you can login",
+                }
+            except IntegrityError:
+                message={"bool":False,"message":"visitor user something went wrong....!"}
+
+        else:
+            message={"bool":False,"message":"oops something went wrong....!"}
+
+
+    except IntegrityError:
+         message={"bool":False,"message":"username already exist."}
+
+    return JsonResponse(message)
+
+
+class CreateCustomerView(generics.ListAPIView):
     queryset=Customer.objects.all()
     serializer_class=CustomerSerializer
     permission_classes=[AllowAny]
@@ -91,6 +150,41 @@ class order_of_customer(generics.ListAPIView):
         customer_id = self.kwargs["pk"]
         qs=qs.filter(order__customer__id=customer_id)
         return qs
+    
+# class RegisterView(APIView):
+#     def post(self,request):
+#         username = request.data.get('username')
+#         first_name = request.data.get('first_name')
+#         last_name = request.data.get('last_name')
+#         email = request.data.get('email')
+#         mobile_number = request.data.get('mobile_number')
+#         address = request.data.get('address')
+#         profile_photo = request.data.get('profile_photo')
+#         password = request.data.get('password')
+
+
+#         user = User.objects.create_user(
+#             username=username,
+#             email=email,
+#             password=password,
+#             first_name=first_name,
+#             last_name=last_name
+#         )
+
+
+#         user.Customer.mobile_number = mobile_number
+#         user.Customer.profile_photo = profile_photo
+#         user.Customer.address = address
+#         user.Customer.save()
+
+#         payload = jwt_payload_handler(user)
+#         token = jwt_encode_handler(payload)
+
+#         return Response({
+#             'token': token,
+#             'user_id': user.id,
+#             'email': user.email
+#         }, status=status.HTTP_201_CREATED)
     
 
 

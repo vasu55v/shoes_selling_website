@@ -14,7 +14,6 @@ class Customer(models.Model):
     def __str__(self):
         return  f"{self.user.username}----------------------{self.mobile_number}"
 
-
 class Vendor(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mobile_number=models.IntegerField(null=True,blank=True)

@@ -23,6 +23,7 @@ urlpatterns = [
 
     #customer
     path('customer/',CreateCustomerView.as_view()),
+    path('customer/register/', customer_register_view, name='register'),
     path('all_customer/',CreateCustomerView.as_view()),
     path('customer/<int:pk>/',CustomerDetailView.as_view()),
 

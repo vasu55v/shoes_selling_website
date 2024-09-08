@@ -3,6 +3,13 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
+
+.shoes_image img{
+    max-width: 300px;
+    width: 100%;
+    max-height: 300px;
+    height: auto;
+}
 .product-card {
     background-color: #fff;
     border-radius: 8px;
