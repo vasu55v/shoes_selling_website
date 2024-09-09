@@ -7,8 +7,7 @@ from rest_framework.permissions import IsAdminUser
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.db import IntegrityError
-
-
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
@@ -35,8 +34,6 @@ class shoesView(generics.ListAPIView):
         qs=qs.filter(shoes=shoes_id)
         return qs
     
-
-
 class shoesCreateView(generics.CreateAPIView):
     queryset=Shoes.objects.all()
     serializer_class=ShoesSerializer
@@ -81,7 +78,7 @@ class ColorAndPhotosDeleteViewSet(generics.DestroyAPIView):
 
 
 #****************************customer view****************************
-
+@csrf_exempt
 def customer_register_view(request):
     first_name=request.POST.get('first_name')
     last_name=request.POST.get('last_name')
