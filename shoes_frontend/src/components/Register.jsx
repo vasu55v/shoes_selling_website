@@ -17,7 +17,7 @@ const Register = () => {
       'username':'',
       'mobile_number':'',
       'address':'',
-      'profilePhoto':'',
+      'profile_photo':'',
       'password':'',
     })
 
@@ -26,13 +26,13 @@ const Register = () => {
       ...registerFormData,
       [e.target.name]:e.target.value,
     })
-  }
+  };
 
   const fileHandler = (e) => {
     setRegisterFormData({
       ...registerFormData,
       [e.target.name]: e.target.files[0],
-    });
+    })
   };
 
   const handleSubmit=()=>{
@@ -41,10 +41,19 @@ const Register = () => {
     formData.append('last_name', registerFormData.lastName);
     formData.append('email', registerFormData.email);
     formData.append('username', registerFormData.username);
-    formData.append('password', registerFormData.password);
     formData.append('mobile_number', registerFormData.mobile_number);
     formData.append('address', registerFormData.address);
-    formData.append('profile_photo', registerFormData.profilePhoto);
+    if (registerFormData.profile_photo) {
+      formData.append('profile_photo', registerFormData.profile_photo);
+    } else {
+      alert("image is not sending in the background...!")
+    }
+    formData.append('password', registerFormData.password);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
 
     api.post('shoes_api/customer/register/',formData,{
       headers: {
@@ -141,11 +150,11 @@ const Register = () => {
               ></textarea>
             </div>
             <div className="form-group">
-              <label htmlFor="profilePhoto">Profile Photo</label>
+              <label htmlFor="profile_photo">Profile Photo</label>
               <input
                 type="file"
-                id="profilePhoto"
-                name="profilePhoto"
+                id="profile_photo"
+                name="profile_photo"
                 accept="image/*"
                 onChange={fileHandler}
               />

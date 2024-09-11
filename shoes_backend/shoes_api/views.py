@@ -94,19 +94,19 @@ def customer_register_view(request):
         user=User.objects.create(
             first_name=first_name,
             last_name=last_name,
-            email=email,
+            email=email,                    
             username=username,
             password=password,
         )
 
         if user:
             try:
-              customer= Customer.objects.create(
-                  user=user,
-                  mobile_number=mobile_number,
-                  address=address,
-                  profile_photo=profile_photo,
-              )
+              customer = Customer.objects.create(
+                user=user,
+                mobile_number=mobile_number,
+                address=address,
+                profile_photo=profile_photo,
+            )
 
               message = {
                     "bool": True,
