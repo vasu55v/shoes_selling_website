@@ -1,13 +1,41 @@
-import React from 'react'
+import React,{useState} from 'react'
 import '../styles/login.css'
 import google from '../assets/google.png'
 import { redirect, useNavigate } from 'react-router-dom'
+import api from '../../Api'
+import { ACCESS_TOKEN,REFRESH_TOKEN } from '../../Constants'
 
 const Login = () => {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
     const navigate=useNavigate();
     const redirectToHome=()=>{
         navigate('/')
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await api.post('shoes_api/token/', { username, password })
+                localStorage.setItem(ACCESS_TOKEN, res.data.access);
+                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                navigate("/")
+                console.table(res)
+                console.log("access:",res.access)
+                console.log("refresh:",res.refresh)
+        } catch (error) {
+            alert(error)
+            console.log(error)
+        } finally {
+            // setLoading(false)
+            console.log("done......!")
+        }
+    };
+
+
   return (
     <div>
         <div className='nav_Section_login'>
@@ -25,11 +53,11 @@ const Login = () => {
             </div>
             <center><u>or</u></center>
             <div className='email_password'>
-                <input type="email" placeholder='Enter your email:'/>
+                <input type="text" placeholder='Enter your username:'  onChange={(e) => setUsername(e.target.value)}/>
                 <br />
-                <input type="password" placeholder='Enter password:'/>
+                <input type="password" placeholder='Enter password:'  onChange={(e) => setPassword(e.target.value)}/>
                 <br />
-                <button>Continue</button>
+                <button type='submit' onClick={handleSubmit}>Continue</button>
             </div>
             <div className='else_container'>
             <p><u>or</u></p>
