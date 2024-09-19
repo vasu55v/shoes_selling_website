@@ -17,7 +17,7 @@ const Register = () => {
       'username':'',
       'mobile_number':'',
       'address':'',
-      'profile_photo':'',
+      'profile_photo':null,
       'password':'',
     })
 
@@ -31,54 +31,55 @@ const Register = () => {
   const fileHandler = (e) => {
     setRegisterFormData({
       ...registerFormData,
-      [e.target.name]: e.target.files[0],
-    })
+      profile_photo: e.target.files[0],
+    });
   };
-
-  const handleSubmit=()=>{
-    const formData=new FormData();
+  
+  // Updated submit handler
+  const handleSubmit = () => {
+    const formData = new FormData();
     formData.append('first_name', registerFormData.firstName);
     formData.append('last_name', registerFormData.lastName);
     formData.append('email', registerFormData.email);
     formData.append('username', registerFormData.username);
     formData.append('mobile_number', registerFormData.mobile_number);
     formData.append('address', registerFormData.address);
+    formData.append('password', registerFormData.password);
+  
     if (registerFormData.profile_photo) {
       formData.append('profile_photo', registerFormData.profile_photo);
     } else {
-      alert("image is not sending in the background...!")
+      console.warn("No profile photo selected");
     }
-    formData.append('password', registerFormData.password);
-
+  
+    // Log FormData entries (for debugging)
     for (let [key, value] of formData.entries()) {
       console.log(key, value);
     }
-
-
-    api.post('shoes_api/customer/register/',formData,{
+  
+    api.post('shoes_api/customer/register/', formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
-    .then((response)=>{
-      console.log(response)
+    .then((response) => {
+      console.log(response);
       setRegisterFormData({
-        'firstName':'',
-        'lastName':'',
-        'email':'',
-        'username':'',
-        'mobile_number':'',
-        'address':'',
-        'profilePhoto':'',
-        'password':'',
-      })
+        firstName: '',
+        lastName: '',
+        email: '',
+        username: '',
+        mobile_number: '',
+        address: '',
+        profile_photo:null,
+        password: '',
+      });
+      window.location.reload();
     })
-    .catch((error)=>{
-      console.log(error)
-    })
-
-    
-  }
+    .catch((error) => {
+      console.error("Registration error:", error);
+    });
+  };
 
   return (
     <div>
@@ -158,7 +159,7 @@ const Register = () => {
                 accept="image/*"
                 onChange={fileHandler}
               />
-            </div>
+            </div> 
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input

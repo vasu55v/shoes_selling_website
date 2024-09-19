@@ -87,7 +87,7 @@ def customer_register_view(request):
     password=request.POST.get('password')
     address=request.POST.get('address')
     mobile_number=request.POST.get('mobile_number')
-    profile_photo=request.POST.get('profile_photo')
+    profile_photo=request.FILES.get('profile_photo')
 
     
     try:
