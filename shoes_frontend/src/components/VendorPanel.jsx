@@ -35,6 +35,12 @@ const VendorPanel = () => {
             <h4>Cancel</h4>
             <p id="cancel"> &#x274C;&nbsp;879776</p>
           </div>
+          <div className="card add_shoes_card">
+            <h4>Add shoes</h4>
+            <p id="AddShoes">
+              <button className="AddShoes_btn">create</button>
+            </p>
+          </div>
         </div>
         <div className="chart-container">
           <canvas id="monthlyChart" />

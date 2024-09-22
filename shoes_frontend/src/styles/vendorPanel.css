@@ -25,6 +25,25 @@
     font-weight: bold;
     color: #007bff;
 }
+.add_shoes_card{
+    text-align: center;
+}
+.AddShoes_btn{
+    padding:10px 30px;
+    margin-top:15px;
+    border: 1px solid #dadada;
+    background-color: rgba(44, 51, 48, 0.31);
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.AddShoes_btn:hover{
+    background-color: #007bffc9;
+    color: #fff;
+    transition: 0.3s;
+}
 
 #pendingOrders{
     color: red;

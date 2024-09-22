@@ -15,6 +15,7 @@ import UserProfile from './components/UserProfile';
 import VendorPanel from './components/VendorPanel';
 import NotFound from './components/NotFound';
 import UserOrders from './components/UserOrders';
+import AddShoes from './components/AddShoes';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/VendorPanel" element={<VendorPanel />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/AddShoes" element={<AddShoes />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
