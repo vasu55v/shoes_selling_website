@@ -15,11 +15,7 @@ const AddShoes = () => {
               accept="image/*"
               required=""
             />
-            <img
-              id="previewImage"
-              src="/api/placeholder/200/200"
-              alt="Upload Image"
-            />
+            <p>Upload image</p>
           </div>
         </div>
         <div className="form-fields">
