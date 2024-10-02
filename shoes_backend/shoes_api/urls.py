@@ -4,8 +4,6 @@ from .views import *
 
 urlpatterns = [
 
-    
-
     #shoes
     path('shoes/',shoesListView.as_view()),
     path('shoes/<int:pk>/',shoesView.as_view()),
@@ -45,6 +43,7 @@ urlpatterns = [
     #vendor
     path('vendor/<int:pk>/',VendorDetailView.as_view()),
     path('vendor/panel/',VendorPanelView),
+    path('vendor/login/',VisitorUser_login),
 
     #category
     path('category',CategoryShoesView.as_view()),

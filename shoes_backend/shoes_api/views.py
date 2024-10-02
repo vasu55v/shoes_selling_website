@@ -13,6 +13,10 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth import authenticate
+
 
 # jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 # jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -207,6 +211,28 @@ def VendorPanelView(request):
     }
 
     return JsonResponse(msg)
+
+
+@csrf_exempt
+def VisitorUser_login(request):
+    username=request.POST.get("username")
+    password=request.POST.get("password")
+
+    user=authenticate(username=username,password=password)
+    if user:
+        vendor_user=Vendor.objects.get(user=user)
+        message={
+            "bool":True,
+            "user_id":user.id,
+            "username":user.username,
+            "vendor_user_id":vendor_user.id
+        }
+    else:
+        message={"bool":False,"message":"Not Valid username or Password"}
+
+    return JsonResponse(message)
+    
+
 
 #****************************category view****************************
 

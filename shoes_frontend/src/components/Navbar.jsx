@@ -13,6 +13,12 @@ const Navbar = () => {
     navLinks.classList.toggle("active");
   };
 
+
+  const logout=()=>{
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+  }
+
   return (
     <div className="nav_section">
     <nav className="navbar">
@@ -68,6 +74,11 @@ const Navbar = () => {
             <a href="/login" className="nav-link">
               Login
             </a>
+          </li>
+          <li className="nav-item">
+            <button onClick={logout} className="nav-link">
+              Logout
+            </button>
           </li>
           <li className="nav-item">
             <a href="/register" className="nav-link">

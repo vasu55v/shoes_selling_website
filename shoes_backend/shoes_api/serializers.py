@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import *
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.http import JsonResponse
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -87,3 +89,5 @@ class OrderStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=OrderStatusByVendor
         fields=['id','order_item','order_status']
+
+

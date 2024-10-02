@@ -19,6 +19,7 @@ from django.urls import path,include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
+from shoes_api.views import * 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,7 @@ urlpatterns = [
 
     path('shoes_api/token/',TokenObtainPairView.as_view(),name="get_token"),
     path('shoes_api/token/refresh/',TokenRefreshView.as_view(),name="refresh"),
+
 
     path("api-auth/",include("rest_framework.urls")),
 

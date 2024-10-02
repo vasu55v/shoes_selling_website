@@ -19,9 +19,8 @@ class Vendor(models.Model):
     mobile_number=models.IntegerField(null=True,blank=True)
     profile_photo=models.ImageField(upload_to='vendor_profile_image')
 
-
     def __str__(self):
-        return  f"{self.user.username}----------------------{self.mobile_number}"
+        return  f"{self.user.username} && {self.mobile_number}"
     
 
 FOR_WHOM_CHOICES =(
