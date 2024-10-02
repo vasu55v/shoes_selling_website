@@ -29,22 +29,15 @@ const VendorLogin = () => {
 
     const handleSubmit = async (e) => {
         const formData =new FormData();
-
-
-        formData.append('username',LoginFormData.username); 
-        formData.append('password',LoginFormData.password); 
-        api.post('shoes_api/vendor/login/',formData)
-        .then((response)=>{
-           console.log(response.data);
-        })
-        .catch((error)=>{
-          console.log(error);
-        })
-
-
-              
-        // navigate("/")
-    
+          formData.append('username',LoginFormData.username); 
+          formData.append('password',LoginFormData.password); 
+          api.post('shoes_api/vendor/login/',formData)
+            .then((response)=>{
+              console.log(response.data);
+            })
+            .catch((error)=>{
+              console.log(error);
+            })              
     };
 
 
@@ -65,9 +58,9 @@ const VendorLogin = () => {
             </div>
             <center><u>or</u></center>
             <div className='email_password'>
-                <input type="text" placeholder='Enter your username:'  onChange={inputHandler}/>
+                <input type="text" placeholder='Enter your username:' name='username' value={LoginFormData.username} onChange={inputHandler}/>
                 <br />
-                <input type="password" placeholder='Enter password:'  onChange={inputHandler}/>
+                <input type="password" placeholder='Enter password:' name='password' value={LoginFormData.password} onChange={inputHandler}/>
                 <br />
                 <button type='submit' onClick={handleSubmit}>Continue</button>
             </div>
