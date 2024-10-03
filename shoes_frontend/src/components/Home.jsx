@@ -6,8 +6,11 @@ import LatestProducts from './LatestProducts.jsx'
 import CategoryCrad from './CategoryCard.jsx'
 import ModelSection from './ModelSection.jsx'
 import Footer from './Footer.jsx'
+import Cookies from "universal-cookie"
+
 
 const Home = () => {
+  // console.log(Cookies.get("vendor_id"))
   return (
     <>
     <Navbar />

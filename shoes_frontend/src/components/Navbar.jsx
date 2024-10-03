@@ -3,6 +3,8 @@ import "../styles/navbar.css";
 import { useNavigate } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import Cookies from 'js-cookie';
+
 
 const Navbar = () => {
 
@@ -17,6 +19,8 @@ const Navbar = () => {
   const logout=()=>{
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
+    Cookies.remove('vendor_id'); 
+    location.reload();
   }
 
   return (
@@ -73,6 +77,11 @@ const Navbar = () => {
           <li className="nav-item">
             <a href="/login" className="nav-link">
               Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/vendorpanel" className="nav-link">
+              Vendor panel
             </a>
           </li>
           <li className="nav-item">

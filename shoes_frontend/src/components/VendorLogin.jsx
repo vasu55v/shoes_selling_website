@@ -4,11 +4,11 @@ import google from '../assets/google.png'
 import { redirect, useNavigate } from 'react-router-dom'
 import api from '../../Api'
 import { ACCESS_TOKEN,REFRESH_TOKEN } from '../../Constants'
-
+import  Cookies  from 'js-cookie';
 const VendorLogin = () => {
-<Window className="title">vendor login</Window>
     // const [username, setUsername] = useState("");
     // const [password, setPassword] = useState("");
+
 
     const navigate=useNavigate();
     const redirectToHome=()=>{
@@ -34,6 +34,13 @@ const VendorLogin = () => {
           api.post('shoes_api/vendor/login/',formData)
             .then((response)=>{
               console.log(response.data);
+              if(response.data.bool == true){
+                setLoginFormData({
+                    username:"",
+                    password:"",
+                  });
+                  Cookies.set("vendor_id",response.data.vendor_user_id,{expires: 7}) // Expires in 7 days
+              }
             })
             .catch((error)=>{
               console.log(error);
