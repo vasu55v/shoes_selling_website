@@ -2,8 +2,14 @@ import React from "react";
 import "../styles/vendorPanel.css";
 import Navbar from "./Navbar";
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { useNavigate } from "react-router-dom";
 
 const VendorPanel = () => {
+  const navigate=useNavigate();
+
+  const redirect=()=>{
+    navigate('/addshoes')
+  }
   return (
     <>
       <Navbar />
@@ -38,7 +44,7 @@ const VendorPanel = () => {
           <div className="card add_shoes_card">
             <h4>Add shoes</h4>
             <p id="AddShoes">
-              <button className="AddShoes_btn">create</button>
+              <button className="AddShoes_btn" onClick={redirect}>create</button>
             </p>
           </div>
         </div>

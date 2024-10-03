@@ -40,9 +40,11 @@ const VendorLogin = () => {
                     password:"",
                   });
                   Cookies.set("vendor_id",response.data.vendor_user_id,{expires: 7}) // Expires in 7 days
-              }
+                  navigate('/vendorpanel')
+                }
             })
             .catch((error)=>{
+              alert("You are not a vendor please login as customer...!")
               console.log(error);
             })              
     };

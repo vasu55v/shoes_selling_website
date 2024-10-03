@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import '../styles/AddShoes.css'
+import Navbar from "./Navbar";
 
 const AddShoes = () => {
 
@@ -15,6 +16,8 @@ const AddShoes = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="add-shoes-container">
       <h1>Add New Shoes</h1>
       <div className="form-container">
@@ -110,6 +113,7 @@ const AddShoes = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

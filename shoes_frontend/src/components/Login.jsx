@@ -27,7 +27,6 @@ const Login = () => {
                 console.log("access:",res.access)
                 console.log("refresh:",res.refresh)
         } catch (error) {
-            alert(error)
             console.log(error)
         } finally {
             // setLoading(false)
