@@ -74,7 +74,8 @@ const Register = () => {
         profile_photo:null,
         password: '',
       });
-      window.location.reload();
+      // window.location.reload();
+      navigate('/login')
     })
     .catch((error) => {
       console.error("Registration error:", error);

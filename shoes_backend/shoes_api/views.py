@@ -16,6 +16,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate
+from django.contrib.auth.hashers import make_password
+
 
 
 # jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -100,7 +102,7 @@ def customer_register_view(request):
             last_name=last_name,
             email=email,                    
             username=username,
-            password=password,
+            password=make_password(password),
         )
 
         if user:
