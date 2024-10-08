@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import '../styles/AddShoes.css'
 import Navbar from "./Navbar";
+import  Cookies  from 'js-cookie';
 
 const AddShoes = () => {
 
@@ -15,6 +16,31 @@ const AddShoes = () => {
     }
   };
 
+  const [shoesData,setShoesData]=useState({
+    'name':'',
+    'product_category':'',
+    'gender':'',
+    'size':'',
+    'price':'',
+    'description':'',
+    'image':null,
+    'shoes_color':'',
+  })
+
+   const submitHandler=()=>{
+      const formData = new FormData();
+      formData.append('name',shoesData.name);
+      formData.append('product_category',shoesData.product_category);
+      formData.append('gender',shoesData.gender);
+      formData.append('size',shoesData.size);
+      formData.append('price',shoesData.price);
+      formData.append('description',shoesData.description);
+      formData.append('image',shoesData.image);
+      formData.append('shoes_color',shoesData.shoes_color);
+
+      
+   }
+
   return (
     <>
     <Navbar />
@@ -27,6 +53,8 @@ const AddShoes = () => {
               type="file"
               id="fileInput"
               onChange={handleImageChange}
+              value={shoesData.image}
+              name="image"
               accept="image/*"
               className="file-input"
             />
@@ -50,12 +78,12 @@ const AddShoes = () => {
           <form action="#" method="post" encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required="" className="form-field"/>
+              <input type="text" id="name" name="name" value={shoesData.name} required="" className="form-field"/>
             </div>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="product_category">Product Category</label>
-                <select id="product_category" name="product_category" required="" className="form-field">
+                <select id="product_category" name="product_category" value={shoesData.product_category} required="" className="form-field">
                   <option value="">Select category</option>
                   <option value="man">Man</option>
                   <option value="woman">Woman</option>
@@ -64,7 +92,7 @@ const AddShoes = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="gender">Gender</label>
-                <select id="gender" name="gender" required="" className="form-field">
+                <select id="gender" value={shoesData.gender} name="gender" required="" className="form-field">
                   <option value="">Select gender</option>
                   <option value="man">Man</option>
                   <option value="woman">Woman</option>
@@ -75,7 +103,7 @@ const AddShoes = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="size">Size</label>
-                <select id="size" name="size" required="" className="form-field">
+                <select id="size"value={shoesData.size} name="size" required="" className="form-field">
                   <option value="">Select size</option>
                   <option value="UK6">UK 6</option>
                   <option value="UK7">UK 7</option>
@@ -90,6 +118,21 @@ const AddShoes = () => {
                   type="number"
                   id="price"
                   name="price"
+                  value={shoesData.price}
+                  step="0.01"
+                  required=""
+                  className="form-field"
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="shoes_color">Shoes Color</label>
+                <input
+                  type="text"
+                  id="shoes_color"
+                  name="shoes_color"
+                  value={shoesData.shoes_color}
                   step="0.01"
                   required=""
                   className="form-field"
@@ -101,12 +144,13 @@ const AddShoes = () => {
               <textarea
                 id="description"
                 name="description"
+                value={shoesData.description}
                 rows={4}
                 required=""
                 className="form-field"
               />
             </div>
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="submit-btn" onClick={submitHandler}>
               Add Shoes
             </button>
           </form>
