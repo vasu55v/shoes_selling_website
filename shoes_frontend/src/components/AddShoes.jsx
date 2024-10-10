@@ -8,64 +8,92 @@ const AddShoes = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const [shoesData,setShoesData]=useState({
-    'name':'',
-    'product_category':'',
-    'gender':'',
-    'size':'',
-    'price':'',
-    'description':'',
-    'image':null,
-    'shoes_color':'',
-  })
+  const [shoesData, setShoesData] = useState({
+    name: '',
+    product_category: '',
+    gender: '',
+    size: '',
+    price: '',
+    description: '',
+    image: null,
+    shoes_color: '', // This will be used for color_name in Color_And_Photos
+  });
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Create a URL for the selected file
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
+      setShoesData({
+        ...shoesData,
+        image: file  // Update shoesData.image with the file
+      });
     }
   };
 
   const handelInput=(e)=>{
     setShoesData({
       ...shoesData,
-      [e.target.name]:e.target.value
+      [e.target.name]:e.target.value,
     })
   }
 
  
 
-   const submitHandler=()=>{
-      const formData = new FormData();
-      formData.append('name',shoesData.name);
-      formData.append('product_category',shoesData.product_category);
-      formData.append('gender',shoesData.gender);
-      formData.append('size',shoesData.size);
-      formData.append('price',shoesData.price);
-      formData.append('description',shoesData.description);
-
-      const formData2=new FormData();
-      formData2.append('shoes_color',shoesData.shoes_color);
-      formData2.append('photo',shoesData.image);
-
-      api.post('shoes_api/shoes-create/',formData)
-      .then((response)=>{
-        console.log(response)
-      })
-      .catch((error)=>{
-         console.log(error)
-      })
-
-      api.post('shoes_api/color_photo_create/',formData2)
-      .then((response)=>{
-        console.log(response)
-      })
-      .catch((error)=>{
-         console.log(error)
-      })
-   }
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    
+    try {
+      // First, create the Shoes record
+      const shoesFormData = new FormData();
+      shoesFormData.append('name', shoesData.name);
+      shoesFormData.append('product_category', shoesData.product_category);
+      shoesFormData.append('gender', shoesData.gender);
+      shoesFormData.append('size', shoesData.size);
+      shoesFormData.append('price', shoesData.price);
+      shoesFormData.append('description', shoesData.description);
+  
+      const shoesResponse = await api.post('shoes_api/shoes_create/', shoesFormData);
+      const createdShoesId = shoesResponse.data.id; // Assuming the API returns the created shoes ID
+      
+      // Then, create the Color_And_Photos record with the shoes ID
+      const colorPhotoFormData = new FormData();
+      colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
+      colorPhotoFormData.append('color_name', shoesData.shoes_color); // Changed from 'shoes_color' to match model
+      colorPhotoFormData.append('photos', shoesData.image);
+  
+      const colorPhotoResponse = await api.post(
+        'shoes_api/color_photo_create/',
+        colorPhotoFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+  
+      // Handle successful submission
+      alert('Shoes and color details added successfully!');
+      
+      // Reset form
+      setShoesData({
+        name: '',
+        product_category: '',
+        gender: '',
+        size: '',
+        price: '',
+        description: '',
+        image: null,
+        shoes_color: '',
+      });
+      setSelectedImage(null);
+  
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error adding shoes. Please try again.');
+    }
+  };
 
   return (
     <>
@@ -79,7 +107,6 @@ const AddShoes = () => {
               type="file"
               id="fileInput"
               onChange={handleImageChange}
-              value={shoesData.image}
               name="image"
               accept="image/*"
               className="file-input"
@@ -111,8 +138,8 @@ const AddShoes = () => {
                 <label htmlFor="product_category">Product Category</label>
                 <select id="product_category" name="product_category"  onChange={handelInput} value={shoesData.product_category} required="" className="form-field">
                   <option value="">Select category</option>
-                  <option value="man">Man</option>
-                  <option value="woman">Woman</option>
+                  <option value="men">Men</option>
+                  <option value="women">Women</option>
                   <option value="unisex">Unisex</option>
                 </select>
               </div>
@@ -120,9 +147,8 @@ const AddShoes = () => {
                 <label htmlFor="gender">Gender</label>
                 <select id="gender" value={shoesData.gender} onChange={handelInput} name="gender" required="" className="form-field">
                   <option value="">Select gender</option>
-                  <option value="man">Man</option>
-                  <option value="woman">Woman</option>
-                  <option value="unisex">Unisex</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
                 </select>
               </div>
             </div>

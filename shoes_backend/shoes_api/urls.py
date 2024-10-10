@@ -7,7 +7,7 @@ urlpatterns = [
     #shoes
     path('shoes/',shoesListView.as_view()),
     path('shoes/<int:pk>/',shoesView.as_view()),
-    path('shoes-create/',shoesCreateView.as_view()),
+    path('shoes_create/',shoesCreateView.as_view()),
     path('shoes-update/<int:pk>/',ShoesUpdateViewSet.as_view()),
     path('shoes-delete/<int:pk>/',ShoesDeleteViewSet.as_view()),
 
