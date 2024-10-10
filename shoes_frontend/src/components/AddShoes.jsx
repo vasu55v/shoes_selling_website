@@ -2,19 +2,11 @@ import React,{useState} from "react";
 import '../styles/AddShoes.css'
 import Navbar from "./Navbar";
 import  Cookies  from 'js-cookie';
+import api from '../../Api'
 
 const AddShoes = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Create a URL for the selected file
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
-    }
-  };
 
   const [shoesData,setShoesData]=useState({
     'name':'',
@@ -27,6 +19,24 @@ const AddShoes = () => {
     'shoes_color':'',
   })
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Create a URL for the selected file
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
+
+  const handelInput=(e)=>{
+    setShoesData({
+      ...shoesData,
+      [e.target.name]:e.target.value
+    })
+  }
+
+ 
+
    const submitHandler=()=>{
       const formData = new FormData();
       formData.append('name',shoesData.name);
@@ -35,10 +45,26 @@ const AddShoes = () => {
       formData.append('size',shoesData.size);
       formData.append('price',shoesData.price);
       formData.append('description',shoesData.description);
-      formData.append('image',shoesData.image);
-      formData.append('shoes_color',shoesData.shoes_color);
 
-      
+      const formData2=new FormData();
+      formData2.append('shoes_color',shoesData.shoes_color);
+      formData2.append('photo',shoesData.image);
+
+      api.post('shoes_api/shoes-create/',formData)
+      .then((response)=>{
+        console.log(response)
+      })
+      .catch((error)=>{
+         console.log(error)
+      })
+
+      api.post('shoes_api/color_photo_create/',formData2)
+      .then((response)=>{
+        console.log(response)
+      })
+      .catch((error)=>{
+         console.log(error)
+      })
    }
 
   return (
@@ -78,12 +104,12 @@ const AddShoes = () => {
           <form action="#" method="post" encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" value={shoesData.name} required="" className="form-field"/>
+              <input type="text" id="name" name="name" onChange={handelInput} value={shoesData.name} required="" className="form-field"/>
             </div>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="product_category">Product Category</label>
-                <select id="product_category" name="product_category" value={shoesData.product_category} required="" className="form-field">
+                <select id="product_category" name="product_category"  onChange={handelInput} value={shoesData.product_category} required="" className="form-field">
                   <option value="">Select category</option>
                   <option value="man">Man</option>
                   <option value="woman">Woman</option>
@@ -92,7 +118,7 @@ const AddShoes = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="gender">Gender</label>
-                <select id="gender" value={shoesData.gender} name="gender" required="" className="form-field">
+                <select id="gender" value={shoesData.gender} onChange={handelInput} name="gender" required="" className="form-field">
                   <option value="">Select gender</option>
                   <option value="man">Man</option>
                   <option value="woman">Woman</option>
@@ -103,7 +129,7 @@ const AddShoes = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="size">Size</label>
-                <select id="size"value={shoesData.size} name="size" required="" className="form-field">
+                <select id="size"value={shoesData.size} onChange={handelInput} name="size" required="" className="form-field">
                   <option value="">Select size</option>
                   <option value="UK6">UK 6</option>
                   <option value="UK7">UK 7</option>
@@ -118,6 +144,7 @@ const AddShoes = () => {
                   type="number"
                   id="price"
                   name="price"
+                  onChange={handelInput}
                   value={shoesData.price}
                   step="0.01"
                   required=""
@@ -131,6 +158,7 @@ const AddShoes = () => {
                 <input
                   type="text"
                   id="shoes_color"
+                  onChange={handelInput}
                   name="shoes_color"
                   value={shoesData.shoes_color}
                   step="0.01"
@@ -144,6 +172,7 @@ const AddShoes = () => {
               <textarea
                 id="description"
                 name="description"
+                onChange={handelInput}
                 value={shoesData.description}
                 rows={4}
                 required=""
