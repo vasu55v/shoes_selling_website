@@ -43,56 +43,66 @@ const AddShoes = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    
-    try {
-      // First, create the Shoes record
-      const shoesFormData = new FormData();
-      shoesFormData.append('name', shoesData.name);
-      shoesFormData.append('product_category', shoesData.product_category);
-      shoesFormData.append('gender', shoesData.gender);
-      shoesFormData.append('size', shoesData.size);
-      shoesFormData.append('price', shoesData.price);
-      shoesFormData.append('description', shoesData.description);
-  
-      const shoesResponse = await api.post('shoes_api/shoes_create/', shoesFormData);
-      const createdShoesId = shoesResponse.data.id; // Assuming the API returns the created shoes ID
-      
-      // Then, create the Color_And_Photos record with the shoes ID
-      const colorPhotoFormData = new FormData();
-      colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
-      colorPhotoFormData.append('color_name', shoesData.shoes_color); // Changed from 'shoes_color' to match model
-      colorPhotoFormData.append('photos', shoesData.image);
-  
-      const colorPhotoResponse = await api.post(
-        'shoes_api/color_photo_create/',
-        colorPhotoFormData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    if (shoesData.name !="" ||shoesData.product_category !="" ||shoesData.gender !="" || 
+     shoesData.size !="" ||shoesData.price !="" ||shoesData.image !="" ||shoesData.shoes_color !="") {
+      try {
+        // First, create the Shoes record
+        const shoesFormData = new FormData();
+        shoesFormData.append('name', shoesData.name);
+        shoesFormData.append('product_category', shoesData.product_category);
+        shoesFormData.append('gender', shoesData.gender);
+        shoesFormData.append('size', shoesData.size);
+        if (!isNaN(parseFloat(shoesData.price))) {
+        shoesFormData.append('price', shoesData.price);
+        }else{
+          alert('Please enter a valid price');
         }
-      );
+        shoesFormData.append('description', shoesData.description);
+    
+        const shoesResponse = await api.post('shoes_api/shoes_create/', shoesFormData);
+        const createdShoesId = shoesResponse.data.id; // Assuming the API returns the created shoes ID
+        
+        // Then, create the Color_And_Photos record with the shoes ID
+        const colorPhotoFormData = new FormData();
+        colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
+        colorPhotoFormData.append('color_name', shoesData.shoes_color); // Changed from 'shoes_color' to match model
+        colorPhotoFormData.append('photos', shoesData.image);
+    
+        const colorPhotoResponse = await api.post(
+          'shoes_api/color_photo_create/',
+          colorPhotoFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+    
+        // Handle successful submission
+        alert('Shoes and color details added successfully!');
+        
+        // Reset form
+        setShoesData({
+          name: '',
+          product_category: '',
+          gender: '',
+          size: '',
+          price: '',
+          description: '',
+          image: null,
+          shoes_color: '',
+        });
+        setSelectedImage(null);
+    
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Error adding shoes. Please try again.');
+      }
+  }
   
-      // Handle successful submission
-      alert('Shoes and color details added successfully!');
-      
-      // Reset form
-      setShoesData({
-        name: '',
-        product_category: '',
-        gender: '',
-        size: '',
-        price: '',
-        description: '',
-        image: null,
-        shoes_color: '',
-      });
-      setSelectedImage(null);
   
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error adding shoes. Please try again.');
-    }
+    
+   
   };
 
   return (

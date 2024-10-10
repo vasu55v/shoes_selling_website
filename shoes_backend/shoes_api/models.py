@@ -25,7 +25,7 @@ class Vendor(models.Model):
 
 FOR_WHOM_CHOICES =(
     ("men", "men"), 
-    ("woman", "woman"), 
+    ("women", "women"), 
     ("kids", "kids"),
 ) 
 
