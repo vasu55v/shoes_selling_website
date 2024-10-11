@@ -17,13 +17,15 @@ import NotFound from './components/NotFound';
 import UserOrders from './components/UserOrders';
 import AddShoes from './components/AddShoes';
 import VendorLogin from './components/VendorLogin';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
 
   return (
     <>
+    <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

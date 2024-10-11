@@ -4,6 +4,7 @@ import google from '../assets/google.png'
 import { redirect, useNavigate } from 'react-router-dom'
 import api from '../../Api'
 import { ACCESS_TOKEN,REFRESH_TOKEN } from '../../Constants'
+import { toast } from "react-toastify";
 
 const Login = () => {
 
@@ -27,7 +28,8 @@ const Login = () => {
                 console.log("access:",res.access)
                 console.log("refresh:",res.refresh)
         } catch (error) {
-            console.log(error)
+            console.log("error:",error)
+            toast.error("Please enter correct username or password ",{autoClose:2000})
         } finally {
             // setLoading(false)
             console.log("done......!")

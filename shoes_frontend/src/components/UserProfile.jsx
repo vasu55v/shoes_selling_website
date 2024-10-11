@@ -3,9 +3,10 @@ import "../styles/UserProfile.css";
 import Navbar from './Navbar'
 import img from "../assets/default.jpg";
 import Footer from "./Footer";
-// import api from '../Api'
+import api from '../../Api'
 import { useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import { jwtDecode } from 'jwt-decode' 
 
 
 const UserProfile = () => {
@@ -13,82 +14,91 @@ const UserProfile = () => {
   const navigate=useNavigate();
 
 
-  // const [ProfileData, setProfileData] = useState({
-  //   user_id:"",
-  //   first_name: "",
-  //   last_name: "",
-  //   username: "",
-  //   email: "",
-  //   profile_img: "",
-  // });
+  const [ProfileData, setProfileData] = useState({
+    user_id:"",
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    profile_img: "",
+  });
 
-  // localStorage.setItem('username',ProfileData.username)
 
-  // const inputHandler = (e) => {
-  //   setProfileData({
-  //     ...ProfileData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const inputHandler = (e) => {
+    setProfileData({
+      ...ProfileData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  // const fileChangeHandler = (e) => {
-  //   if (e.target.files[0]) {
-  //   setProfileData({
-  //     ...ProfileData,
-  //     [e.target.name]: e.target.files[0],
-  //   });
-  // }
+  const fileChangeHandler = (e) => {
+    if (e.target.files[0]) {
+    setProfileData({
+      ...ProfileData,
+      [e.target.name]: e.target.files[0],
+    });
+  }
 
-  // };
+  };
 
-  // const VisitorUser_id = localStorage.getItem("visitor_user_id");
+  const [user_id,setUser_id]=useState();
 
-  // useEffect(() => {
-  //   api.get("/backend_api/VisitorUser/" + VisitorUser_id + "/").then((response) => {
-  //     // console.log(response.data);
-  //     setProfileData({
-  //       user_id:response.data.user.id,
-  //       first_name: response.data.user.first_name,
-  //       last_name: response.data.user.last_name,
-  //       username: response.data.user.username,
-  //       email: response.data.user.email,
-  //       profile_img: response.data.profile_img,
-  //     });
-  //   });
-  // }, []);
 
-  // const handleSubmit = (e) => {
 
-  //   const formData = new FormData();
-  //   formData.append("user",ProfileData.user_id);
-  //   if (ProfileData.profile_img instanceof File) {
-  //   formData.append("profile_img", ProfileData.profile_img);
-  //   }
 
-  //   for (const [key, value] of formData.entries()) {
-  //     console.log(key, value);
-  //   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("access");
+    var decoded =jwtDecode(token);
+    setUser_id(decoded.user_id)
+    api.get("shoes_api/customer/" + 23 + "/")
+    .then((response) => {
+      // console.log(response.data);
+      // setProfileData({
+      //   user_id:response.data.user.id,
+      //   first_name: response.data.user.first_name,
+      //   last_name: response.data.user.last_name,
+      //   username: response.data.user.username,
+      //   email: response.data.user.email,
+      //   profile_img: response.data.profile_img,
+      // });
+      console.log(response)
+    });
+   
+  }, []);
+
+  const handleSubmit = (e) => {
+
+    // const formData = new FormData();
+    // formData.append("user",ProfileData.user_id);
+    // if (ProfileData.profile_img instanceof File) {
+    // formData.append("profile_img", ProfileData.profile_img);
+    // }
+
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
 
   
-  //   api.put("/backend_api/VisitorUser/" + VisitorUser_id + "/Update/", formData, {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     }
-  //   })
-  //   .then((response) => {
-  //     console.log(response);
-  //     toast("Profile updated successfully");
-  //     setTimeout(()=>{
-  //       if(response.status==200){
-  //         location.reload();
-  //       }
-  //     },5000)
+    // api.put("/backend_api/VisitorUser/" + VisitorUser_id + "/Update/", formData, {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   }
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    //   toast("Profile updated successfully");
+    //   setTimeout(()=>{
+    //     if(response.status==200){
+    //       location.reload();
+    //     }
+    //   },5000)
       
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.response.data);
-  //     toast.error("Oops something went wrong...!try again")  // Log the full error response
-  //   });
+    // })
+    // .catch((error) => {
+    //   console.log(error.response.data);
+    //   toast.error("Oops something went wrong...!try again")  // Log the full error response
+    // });
 
     // const formUserData = new FormData();
     // formUserData.append("first_name", ProfileData.first_name);
@@ -106,7 +116,7 @@ const UserProfile = () => {
     //     console.log(error);
     //   });
 
-    // };
+    };
 
 
   return (
@@ -123,24 +133,24 @@ const UserProfile = () => {
           <label htmlFor="profile_img" id="profile_image_text">
             Profile image
           </label>
-          {/* {
+          {
             ProfileData.profile_img !=="" &&
               <p id="profile_img">
               <img src={ProfileData.profile_img} alt="Profile" />
             </p>
           }
           {
-            ProfileData.profile_img =="" && */}
+            ProfileData.profile_img =="" &&
               <p id="profile_img">
               <img src={img} alt="Profile" />
             </p>
-          {/* } */}
+           } 
          
           <label htmlFor="img">Image:</label>
           <input
             type="file"
             name="profile_img"
-            // onChange={fileChangeHandler}
+            onChange={fileChangeHandler}
             id="img"
             className="img"
           />
@@ -148,8 +158,8 @@ const UserProfile = () => {
           <input
             type="text"
             name="first_name"
-            // onChange={inputHandler}
-            // value={ProfileData.first_name}
+            onChange={inputHandler}
+            value={ProfileData.first_name}
             placeholder="Enter your first name"
             id="f_name"
             className="f_name"
@@ -158,8 +168,8 @@ const UserProfile = () => {
           <input
             type="text"
             name="last_name"
-            // onChange={inputHandler}
-            // value={ProfileData.last_name}
+            onChange={inputHandler}
+            value={ProfileData.last_name}
             placeholder="Enter your last name"
             id="l_name"
             className="l_name"
@@ -168,8 +178,8 @@ const UserProfile = () => {
           <input
             type="text"
             name="username"
-            // onChange={inputHandler}
-            // value={ProfileData.username}
+            onChange={inputHandler}
+            value={ProfileData.username}
             placeholder="Enter your username"
             id="username"
             className="username"
@@ -178,8 +188,8 @@ const UserProfile = () => {
           <input
             type="email"
             name="email"
-            // onChange={inputHandler}
-            // value={ProfileData.email}
+            onChange={inputHandler}
+            value={ProfileData.email}
             placeholder="Enter your email"
             id="email"
             className="email"
