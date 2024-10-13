@@ -7,6 +7,7 @@ import api from '../../Api'
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { jwtDecode } from 'jwt-decode' 
+import  Cookies  from 'js-cookie';
 
 
 const UserProfile = () => {
@@ -41,19 +42,11 @@ const UserProfile = () => {
 
   };
 
-  const [user_id,setUser_id]=useState();
-
-
-
-
 
   useEffect(() => {
-    const token = localStorage.getItem("access");
-    var decoded =jwtDecode(token);
-    setUser_id(decoded.user_id)
-    api.get("shoes_api/customer/" + 23 + "/")
+    api.get("shoes_api/customer/" + Cookies.get("Customer_id") + "/")
     .then((response) => {
-      // console.log(response.data);
+      console.log(response.data);
       // setProfileData({
       //   user_id:response.data.user.id,
       //   first_name: response.data.user.first_name,
@@ -65,7 +58,7 @@ const UserProfile = () => {
       console.log(response)
     });
    
-  }, []);
+  }, [Cookies.get("Customer_id")]);
 
   const handleSubmit = (e) => {
 

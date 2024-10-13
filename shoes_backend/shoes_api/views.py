@@ -89,12 +89,11 @@ def customer_register_view(request):
     first_name=request.POST.get('first_name')
     last_name=request.POST.get('last_name')
     email=request.POST.get('email')
-    username=request.POST.get('first_name')
+    username=request.POST.get('username')
     password=request.POST.get('password')
     address=request.POST.get('address')
     mobile_number=request.POST.get('mobile_number')
     profile_photo=request.FILES.get('profile_photo')
-
     
     try:
         user=User.objects.create(

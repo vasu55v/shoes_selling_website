@@ -3,6 +3,7 @@ import '../styles/register.css'
 import { useNavigate } from 'react-router-dom'
 // import google from '../assets/google.png'
 import api from '../../Api'
+import  Cookies  from 'js-cookie';
 
 const Register = () => {
   const navigate=useNavigate();
@@ -75,6 +76,7 @@ const Register = () => {
         password: '',
       });
       // window.location.reload();
+      Cookies.set("Customer_id",response.data.customer_id)
       navigate('/login')
     })
     .catch((error) => {
