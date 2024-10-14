@@ -76,7 +76,7 @@ const Register = () => {
         password: '',
       });
       // window.location.reload();
-      Cookies.set("Customer_id",response.data.customer_id)
+      Cookies.set("Customer_id",response.data.customer_id);
       navigate('/login')
     })
     .catch((error) => {

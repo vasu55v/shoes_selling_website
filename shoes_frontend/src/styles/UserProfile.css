@@ -48,7 +48,7 @@
   background: linear-gradient(180deg, #f0eee520 0%, #f4f2ec43 100%);
 }
 
-.user_profile input {
+.user_profile input,textarea {
   display: flex;
   height: 44px;
   padding: 10px;

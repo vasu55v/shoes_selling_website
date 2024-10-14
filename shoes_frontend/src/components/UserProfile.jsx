@@ -21,7 +21,9 @@ const UserProfile = () => {
     last_name: "",
     username: "",
     email: "",
+    address: "",
     profile_img: "",
+    mobile_number:"",
   });
 
 
@@ -42,74 +44,81 @@ const UserProfile = () => {
 
   };
 
+  const logout=()=>{
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    Cookies.remove('vendor_id');
+    Cookies.remove('Customer_id'); 
+    navigate('/');
+    location.reload(); 
+  }
+
 
   useEffect(() => {
     api.get("shoes_api/customer/" + Cookies.get("Customer_id") + "/")
     .then((response) => {
-      console.log(response.data);
-      // setProfileData({
-      //   user_id:response.data.user.id,
-      //   first_name: response.data.user.first_name,
-      //   last_name: response.data.user.last_name,
-      //   username: response.data.user.username,
-      //   email: response.data.user.email,
-      //   profile_img: response.data.profile_img,
-      // });
+      console.log("response data:",response.data);
+      setProfileData({
+        user_id:response.data.user.id,
+        first_name: response.data.user.first_name,
+        last_name: response.data.user.last_name,
+        username: response.data.user.username,
+        email: response.data.user.email,
+        profile_img: response.data.profile_photo,
+        address: response.data.address,
+        mobile_number: response.data.mobile_number,
+
+      });
       console.log(response)
     });
    
   }, [Cookies.get("Customer_id")]);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
 
-    // const formData = new FormData();
-    // formData.append("user",ProfileData.user_id);
-    // if (ProfileData.profile_img instanceof File) {
-    // formData.append("profile_img", ProfileData.profile_img);
-    // }
-
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
+  //   const formData = new FormData();
+  //   formData.append("user",ProfileData.user_id);
+  //   formData.append("profile_photo", ProfileData.profile_photo);
+  //   formData.append("mobile_number", ProfileData.mobile_number);
 
   
-    // api.put("/backend_api/VisitorUser/" + VisitorUser_id + "/Update/", formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   }
-    // })
-    // .then((response) => {
-    //   console.log(response);
-    //   toast("Profile updated successfully");
-    //   setTimeout(()=>{
-    //     if(response.status==200){
-    //       location.reload();
-    //     }
-    //   },5000)
+  //   api.put("/shoes_api/customer/" + VisitorUser_id +"/", formData, {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     }
+  //   })
+  //   .then((response) => {
+  //     console.log(response);
+  //     toast("Profile updated successfully");
+  //     setTimeout(()=>{
+  //       if(response.status==200){
+  //         location.reload();
+  //       }
+  //     },5000)
       
-    // })
-    // .catch((error) => {
-    //   console.log(error.response.data);
-    //   toast.error("Oops something went wrong...!try again")  // Log the full error response
-    // });
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.response.data);
+  //     toast.error("Oops something went wrong...!try again")  // Log the full error response
+  //   });
 
-    // const formUserData = new FormData();
-    // formUserData.append("first_name", ProfileData.first_name);
-    // formUserData.append("last_name", ProfileData.last_name);
-    // formUserData.append("username", ProfileData.username);
-    // formUserData.append("email", ProfileData.email);
+  //   const formUserData = new FormData();
+  //   formUserData.append("first_name", ProfileData.first_name);
+  //   formUserData.append("last_name", ProfileData.last_name);
+  //   formUserData.append("username", ProfileData.username);
+  //   formUserData.append("email", ProfileData.email);
 
-    // api
-    //   .put("/backend_api/User/" + ProfileData.user_id+ "/", formUserData)
-    //   .then(function (res) {
-    //     console.log(res);
+  //   api
+  //     .put("/backend_api/User/" + ProfileData.user_id+ "/", formUserData)
+  //     .then(function (res) {
+  //       console.log(res);
        
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
 
-    };
+  //   };
 
 
   return (
@@ -187,6 +196,24 @@ const UserProfile = () => {
             id="email"
             className="email"
           />
+           <label htmlFor="mobile_number">Contact Number:</label>
+          <input
+            type="number"
+            name="mobile_number"
+            onChange={inputHandler}
+            value={ProfileData.mobile_number}
+            placeholder="Enter your mobile_number"
+            id="mobile_number"
+            className="mobile_number"
+          />
+          <label htmlFor="f_name">Address:</label>
+          <textarea
+            name="address"
+            onChange={inputHandler}
+            value={ProfileData.address}
+            id="address"
+            className="address"
+          />
           {/* <button className="submit_btn" type="button" onClick={handleSubmit}> */}
           <button className="submit_btn" type="button">
             Submit
@@ -201,7 +228,7 @@ const UserProfile = () => {
           <hr className="hr_box"/>
           <br />
           <p>Account Management</p>
-          <button className="logout_btn" onClick={()=>navigate('/Logout')}>
+          <button className="logout_btn" onClick={logout}>
            Log out
           </button>     
         </div>
