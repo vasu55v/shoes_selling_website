@@ -42,6 +42,7 @@ const Navbar = () => {
   const logout=()=>{
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
+    localStorage.removeItem("userid");
     Cookies.remove('vendor_id');
     Cookies.remove('Customer_id'); 
     navigate('/');

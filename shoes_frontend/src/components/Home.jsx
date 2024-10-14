@@ -13,31 +13,8 @@ import api from '../../Api'
 
 const Home = () => {
     // console.log(Cookies.get("vendor_id"))
-    const [customerData,setCustomerData] =useState([]);
-    const [UserId,setUserId] =useState("");
-    useEffect(()=>{
-      api.get('shoes_api/customer/')
-      .then((response)=>{
-          setCustomerData(response.data)
-      })
-      .catch((error)=>{
-          console.log(error)
-      })
-    
-      const token=localStorage.getItem("access");
-      if(token){
-        const user_id=jwtDecode(token);
-        setUserId(user_id.user_id);
-        localStorage.setItem("userid:",UserId);
 
-        // if(customerData.includes(UserId)){
-        //     console.log("customer id value index:",arr.indexof(UserId));
-        // }
-       }
-                   
-    },[])
  
-
   return (
     <>
     <Navbar />

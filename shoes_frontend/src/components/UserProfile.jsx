@@ -14,6 +14,38 @@ const UserProfile = () => {
 
   const navigate=useNavigate();
 
+  const [customerData,setCustomerData] =useState([]);
+  const [UserId,setUserId] =useState("");
+  const [CustomerId,setCustomerId] =useState("");
+
+  useEffect(()=>{
+    api.get('shoes_api/customer/')
+    .then((response)=>{
+        setCustomerData(response.data)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+  
+         
+  },[])
+
+  useEffect(()=>{
+    const token=localStorage.getItem("access");
+    if(token){
+      const user_id=jwtDecode(token);
+      setUserId(user_id.user_id);
+      localStorage.setItem("userid:",UserId);
+      console.log(UserId)
+      const UserData=customerData.find(obj => obj.user === UserId )
+      if (UserData) {
+        console.log("userdata:", UserData.id);
+        setCustomerId(UserData.id);
+      } else {
+        console.log("User not found in customerData");
+      }
+     }   
+  },[customerData])  
 
   const [ProfileData, setProfileData] = useState({
     user_id:"",
@@ -47,6 +79,7 @@ const UserProfile = () => {
   const logout=()=>{
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
+    localStorage.removeItem("userid");
     Cookies.remove('vendor_id');
     Cookies.remove('Customer_id'); 
     navigate('/');
@@ -55,7 +88,7 @@ const UserProfile = () => {
 
 
   useEffect(() => {
-    api.get("shoes_api/customer/" + Cookies.get("Customer_id") + "/")
+    api.get("shoes_api/customer/" + CustomerId + "/")
     .then((response) => {
       console.log("response data:",response.data);
       setProfileData({
@@ -72,7 +105,7 @@ const UserProfile = () => {
       console.log(response)
     });
    
-  }, [Cookies.get("Customer_id")]);
+  }, [CustomerId]);
 
   // const handleSubmit = (e) => {
 
