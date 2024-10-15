@@ -24,6 +24,11 @@ from django.contrib.auth.hashers import make_password
 # jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 # Create your views here.
 
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializerNoPassword
+    permission_classes = [AllowAny] 
+
 class shoesListView(generics.ListAPIView):
     queryset=Shoes.objects.all()
     serializer_class=ShoesDetailSerializer

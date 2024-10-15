@@ -18,6 +18,8 @@ urlpatterns = [
     path('color_photo_update/<int:pk>/',ColorAndPhotosUpdateViewSet.as_view()),
     path('color_photo_delete/<int:pk>/',ColorAndPhotosDeleteViewSet.as_view()),
 
+    #user
+    path('user/<int:pk>/',CustomerDetailView.as_view()),
 
     #customer
     path('customer/',CreateCustomerView.as_view()),

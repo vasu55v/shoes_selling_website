@@ -103,55 +103,60 @@ const UserProfile = () => {
 
       });
       console.log(response)
-    });
+    })
+    .catch((error)=>{
+      console.log(error)
+  })
    
   }, [CustomerId]);
 
-  // const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
 
-  //   const formData = new FormData();
-  //   formData.append("user",ProfileData.user_id);
-  //   formData.append("profile_photo", ProfileData.profile_photo);
-  //   formData.append("mobile_number", ProfileData.mobile_number);
+    const formUserData = new FormData();
+    formUserData.append("first_name", ProfileData.first_name);
+    formUserData.append("last_name", ProfileData.last_name);
+    formUserData.append("username", ProfileData.username);
+    formUserData.append("email", ProfileData.email);
+
+    api
+      .put("/shoes_api/User/" + UserId + "/", formUserData)
+      .then(function (res) {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+    const formData = new FormData();
+    formData.append("user",UserId);
+    formData.append("profile_photo", ProfileData.profile_photo);
+    formData.append("address", ProfileData.address);
+    formData.append("mobile_number", ProfileData.mobile_number);
 
   
-  //   api.put("/shoes_api/customer/" + VisitorUser_id +"/", formData, {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     }
-  //   })
-  //   .then((response) => {
-  //     console.log(response);
-  //     toast("Profile updated successfully");
-  //     setTimeout(()=>{
-  //       if(response.status==200){
-  //         location.reload();
-  //       }
-  //     },5000)
+    api.put("/shoes_api/customer/" + VisitorUser_id +"/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      toast("Profile updated successfully",{autoClose:2000});
+      setTimeout(()=>{
+        if(response.status==200){
+          location.reload();
+        }
+      },2000)
       
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.response.data);
-  //     toast.error("Oops something went wrong...!try again")  // Log the full error response
-  //   });
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+      toast.error("Oops something went wrong...!try again")  // Log the full error response
+    });
 
-  //   const formUserData = new FormData();
-  //   formUserData.append("first_name", ProfileData.first_name);
-  //   formUserData.append("last_name", ProfileData.last_name);
-  //   formUserData.append("username", ProfileData.username);
-  //   formUserData.append("email", ProfileData.email);
-
-  //   api
-  //     .put("/backend_api/User/" + ProfileData.user_id+ "/", formUserData)
-  //     .then(function (res) {
-  //       console.log(res);
-       
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-
-  //   };
+ 
+    };
 
 
   return (
@@ -247,8 +252,7 @@ const UserProfile = () => {
             id="address"
             className="address"
           />
-          {/* <button className="submit_btn" type="button" onClick={handleSubmit}> */}
-          <button className="submit_btn" type="button">
+          <button className="submit_btn" type="button" onClick={handleSubmit}>
             Submit
           </button>
         </div>
