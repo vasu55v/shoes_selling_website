@@ -19,13 +19,15 @@ urlpatterns = [
     path('color_photo_delete/<int:pk>/',ColorAndPhotosDeleteViewSet.as_view()),
 
     #user
-    path('user/<int:pk>/',CustomerDetailView.as_view()),
+    path('user/<int:pk>/',UserDetailView.as_view()),
 
     #customer
     path('customer/',CreateCustomerView.as_view()),
     path('customer/register/', customer_register_view, name='register'),
     path('all_customer/',CreateCustomerView.as_view()),
     path('customer/<int:pk>/',CustomerDetailView.as_view()),
+    path('customer/<int:pk>/update/',CustomerDetailUpdateView.as_view()),
+    path('customer/<int:pk>/delete/',CustomerDetailDeleteView.as_view()),
 
     #customer review
     path('product/<int:id>/customer-review/',CustomerReviewView.as_view()),

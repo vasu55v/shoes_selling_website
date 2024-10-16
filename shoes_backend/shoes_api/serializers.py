@@ -38,7 +38,10 @@ class CustomerDetailSerializer(serializers.ModelSerializer):
         model=Customer
         fields=['id','user','mobile_number','address','profile_photo']
 
-
+class CustomerDetailUpdateDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Customer
+        fields=['id','user','mobile_number','address','profile_photo']
 
 class ShoesDetailSerializer(serializers.ModelSerializer):
     class Meta:

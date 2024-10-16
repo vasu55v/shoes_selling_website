@@ -147,6 +147,21 @@ class CustomerDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=CustomerDetailSerializer
     permission_classes=[AllowAny]
 
+class CustomerDetailUpdateView(generics.RetrieveUpdateAPIView):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerDetailUpdateDeleteSerializer
+    permission_classes=[AllowAny]
+
+class CustomerDetailDeleteView(generics.RetrieveDestroyAPIView):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerDetailUpdateDeleteSerializer
+    permission_classes=[AllowAny]
+
+class CustomerUpdateView(generics.UpdateAPIView):
+    queryset=Customer.objects.all()
+    serializer_class=CustomerDetailSerializer
+    permission_classes=[AllowAny]
+
 class order_of_customer(generics.ListAPIView):
     queryset=Order_item.objects.all()
     serializer_class=OrderItemSerializer

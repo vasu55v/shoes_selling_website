@@ -102,7 +102,7 @@ const UserProfile = () => {
         mobile_number: response.data.mobile_number,
 
       });
-      console.log(response)
+      // console.log(response)
     })
     .catch((error)=>{
       console.log(error)
@@ -119,7 +119,7 @@ const UserProfile = () => {
     formUserData.append("email", ProfileData.email);
 
     api
-      .put("/shoes_api/User/" + UserId + "/", formUserData)
+      .put("/shoes_api/user/" + UserId + "/", formUserData)
       .then(function (res) {
         console.log(res);
       })
@@ -130,12 +130,11 @@ const UserProfile = () => {
 
     const formData = new FormData();
     formData.append("user",UserId);
-    formData.append("profile_photo", ProfileData.profile_photo);
-    formData.append("address", ProfileData.address);
     formData.append("mobile_number", ProfileData.mobile_number);
-
+    formData.append("address", ProfileData.address);
+    formData.append("profile_photo", ProfileData.profile_photo);
   
-    api.put("/shoes_api/customer/" + VisitorUser_id +"/", formData, {
+    api.put("/shoes_api/customer/" + VisitorUser_id +"/update/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -152,7 +151,7 @@ const UserProfile = () => {
     })
     .catch((error) => {
       console.log(error.response.data);
-      toast.error("Oops something went wrong...!try again")  // Log the full error response
+      toast.error("Oops something went wrong...!try again",{autoClose:2000})  // Log the full error response
     });
 
  
@@ -170,18 +169,18 @@ const UserProfile = () => {
       </div>
       <div className="outer_user_profile">
         <div className="user_profile">
-          <label htmlFor="profile_img" id="profile_image_text">
+          <label htmlFor="profile_photo" id="profile_image_text">
             Profile image
           </label>
           {
-            ProfileData.profile_img !=="" &&
-              <p id="profile_img">
-              <img src={ProfileData.profile_img} alt="Profile" />
+            ProfileData.profile_photo !=="" &&
+              <p id="profile_photo">
+              <img src={ProfileData.profile_photo} alt="Profile" />
             </p>
           }
           {
-            ProfileData.profile_img =="" &&
-              <p id="profile_img">
+            ProfileData.profile_photo =="" &&
+              <p id="profile_photo">
               <img src={img} alt="Profile" />
             </p>
            } 
@@ -189,7 +188,7 @@ const UserProfile = () => {
           <label htmlFor="img">Image:</label>
           <input
             type="file"
-            name="profile_img"
+            name="profile_photo"
             onChange={fileChangeHandler}
             id="img"
             className="img"
