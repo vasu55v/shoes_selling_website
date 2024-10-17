@@ -14,6 +14,7 @@ const UserProfile = () => {
   const [customerData, setCustomerData] = useState([]);
   const [UserId, setUserId] = useState("");
   const [CustomerId, setCustomerId] = useState("");
+  const [newImageSelected, setNewImageSelected] = useState(false);
 
   useEffect(() => {
     api
@@ -50,7 +51,7 @@ const UserProfile = () => {
     username: "",
     email: "",
     address: "",
-    profile_photo: null,
+    profile_img: null,
     mobile_number: "",
   });
 
@@ -62,12 +63,14 @@ const UserProfile = () => {
   };
 
   const fileChangeHandler = (e) => {
-    // if (e.target.files[0]) {
+    if (e.target.files[0]) {
     setProfileData({
       ...ProfileData,
       [e.target.name]: e.target.files[0],
     });
-    // }
+    }
+    setNewImageSelected(true);
+
   };
 
   const logout = () => {
@@ -86,13 +89,14 @@ const UserProfile = () => {
         .get("shoes_api/customer/" + CustomerId + "/")
         .then((response) => {
           console.log("response data:", response.data);
+          console.log("userprofile:",response.data.profile_photo)
           setProfileData({
             user_id: response.data.user.id,
             first_name: response.data.user.first_name,
             last_name: response.data.user.last_name,
             username: response.data.user.username,
             email: response.data.user.email,
-            profile_photo: response.data.profile_photo,
+            profile_img: response.data.profile_photo,
             address: response.data.address,
             mobile_number: response.data.mobile_number,
           });
@@ -106,31 +110,38 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   
+    // Form data for the user fields
     const formUserData = new FormData();
     formUserData.append("first_name", ProfileData.first_name);
     formUserData.append("last_name", ProfileData.last_name);
     formUserData.append("username", ProfileData.username);
     formUserData.append("email", ProfileData.email);
   
+    // API call to update the user details
     api
       .put("/shoes_api/user/" + UserId + "/", formUserData)
-      .then(function (res) {
+      .then((res) => {
         console.log(res);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   
+    // Form data for the customer fields
     const formData = new FormData();
     formData.append("user", UserId);
     formData.append("mobile_number", ProfileData.mobile_number);
     formData.append("address", ProfileData.address);
   
-    // Only append the profile_photo if it's a file, skip if it's a URL or null
-    if (ProfileData.profile_photo instanceof File) {
-      formData.append("profile_photo", ProfileData.profile_photo);
+    // Append file only if a new image is selected
+    if (newImageSelected && ProfileData.profile_img instanceof File) {
+      formData.append("profile_photo", ProfileData.profile_img); // Append the file
+    } else if (!newImageSelected && ProfileData.profile_img) {
+    // You might want to send it to the backend as part of the data, if required.
+      formData.append("profile_photo", ProfileData.profile_img);
     }
   
+    // API call to update the customer details
     api
       .put("/shoes_api/customer/" + CustomerId + "/update/", formData, {
         headers: {
@@ -148,11 +159,12 @@ const UserProfile = () => {
       })
       .catch((error) => {
         console.log(error.response?.data);
-        toast.error("Oops something went wrong...!try again", {
+        toast.error("Oops something went wrong...! Try again", {
           autoClose: 2000,
         });
       });
   };
+  
 
   return (
     <>
@@ -171,7 +183,7 @@ const UserProfile = () => {
             <p id="profile_img">
               <img
                 src={
-                  ProfileData.profile_photo ? ProfileData.profile_photo : img
+                  ProfileData.profile_img ? ProfileData.profile_img : img
                 }
                 alt="Profile"
               />
@@ -180,7 +192,7 @@ const UserProfile = () => {
             <label htmlFor="profile_img">Image:</label>
             <input
               type="file"
-              name="profile_photo"
+              name="profile_img"
               onChange={fileChangeHandler}
               id="profile_img"
               className="img"
