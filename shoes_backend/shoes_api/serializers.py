@@ -66,6 +66,10 @@ class ColorAndPhotosSerializer(serializers.ModelSerializer):
         model=Color_And_Photos
         fields=['id','shoes','color_name','photos']
 
+class CategorySerializer(serializers.ModelSerializer):
+     class Meta:
+        model=Color_And_Photos
+        fields=['id','shoes','shoes_category_name']
 
 class OrderSerializer(serializers.ModelSerializer):
      customer=CustomerSerializer()

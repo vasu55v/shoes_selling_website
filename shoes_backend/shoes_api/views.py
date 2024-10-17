@@ -268,6 +268,11 @@ class CategoryShoesView(generics.ListAPIView):
     #     qs=qs.filter(order__customer__id=category_name)
     #     return qs
     
+#****************************shoes category view****************************
+class ShoesCategoryView(generics.ListCreateAPIView):
+    queryset=Category.objects.all()
+    serializer_class=CategorySerializer
+    permission_classes=[AllowAny]
 
 #****************************infinite scroll****************************
 

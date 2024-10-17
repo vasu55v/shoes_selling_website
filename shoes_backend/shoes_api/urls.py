@@ -46,8 +46,8 @@ urlpatterns = [
     path('vendor/login/',VisitorUser_login),
 
     #category
-    path('category',CategoryShoesView.as_view()),
-
+    path('category/',CategoryShoesView.as_view()),
+    path('shoes_category/',ShoesCategoryView.as_view()),
       
     #scroll
     path('scroll/',scroll,name="shoes_scroll")

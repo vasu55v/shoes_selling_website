@@ -17,6 +17,7 @@ const AddShoes = () => {
     description: '',
     image: null,
     shoes_color: '', // This will be used for color_name in Color_And_Photos
+    shoes_category:'',
   });
 
 
@@ -62,6 +63,8 @@ const AddShoes = () => {
         const shoesResponse = await api.post('shoes_api/shoes_create/', shoesFormData);
         const createdShoesId = shoesResponse.data.id; // Assuming the API returns the created shoes ID
         
+    
+
         // Then, create the Color_And_Photos record with the shoes ID
         const colorPhotoFormData = new FormData();
         colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
@@ -91,6 +94,7 @@ const AddShoes = () => {
           description: '',
           image: null,
           shoes_color: '',
+          shoes_category:'',
         });
         setSelectedImage(null);
     
@@ -101,7 +105,17 @@ const AddShoes = () => {
   }
   
   
-    
+  const CategoryFormData=new FormData();
+  colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
+  colorPhotoFormData.append('shoes_category', shoesData.shoes_category);
+
+  api.post("shoes_api/shoes_category/",CategoryFormData)
+  .response((response)=>{
+    console.log(response)
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
    
   };
 
@@ -143,14 +157,30 @@ const AddShoes = () => {
               <label htmlFor="name">Name</label>
               <input type="text" id="name" name="name" onChange={handelInput} value={shoesData.name} required="" className="form-field"/>
             </div>
+            <div className="form-group">
+                <label htmlFor="product_category">Shoes Category</label>
+                <select id="product_category" name="shoes_category"  onChange={handelInput} value={shoesData.product_category} required="" className="form-field">
+                  <option value="">Select category</option>
+                  <option value="BOOTS">BOOTS</option>
+                  <option value="CASUALS SHOES">CASUALS SHOES</option>
+                  <option value="FLIP FLOPS">FLIP FLOPS</option>
+                  <option value="SANDALS & FLOATERS">SANDALS & FLOATERS</option>
+                  <option value="SPORTS SHOES & SNEAKERS">SPORTS SHOES & SNEAKERS</option>
+                </select>
+              </div>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="product_category">Product Category</label>
                 <select id="product_category" name="product_category"  onChange={handelInput} value={shoesData.product_category} required="" className="form-field">
                   <option value="">Select category</option>
-                  <option value="men">Men</option>
-                  <option value="women">Women</option>
-                  <option value="unisex">Unisex</option>
+                  <option value="men">men</option>
+                  <option value="women">women</option>
+                  <option value="kids">kids</option>
+                  {/* <option value="BOOTS">BOOTS</option>
+                  <option value="CASUALS SHOES">CASUALS SHOES</option>
+                  <option value="FLIP FLOPS">FLIP FLOPS</option>
+                  <option value="SANDALS & FLOATERS">SANDALS & FLOATERS</option>
+                  <option value="SPORTS SHOES & SNEAKERS">SPORTS SHOES & SNEAKERS</option> */}
                 </select>
               </div>
               <div className="form-group">
