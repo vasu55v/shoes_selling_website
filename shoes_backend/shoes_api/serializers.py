@@ -68,7 +68,7 @@ class ColorAndPhotosSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
      class Meta:
-        model=Color_And_Photos
+        model=Category
         fields=['id','shoes','shoes_category_name']
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -101,5 +101,4 @@ class OrderStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=OrderStatusByVendor
         fields=['id','order_item','order_status']
-
 

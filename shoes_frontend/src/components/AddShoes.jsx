@@ -84,6 +84,15 @@ const AddShoes = () => {
         // Handle successful submission
         alert('Shoes and color details added successfully!');
         
+        const CategoryFormData=new FormData();
+        CategoryFormData.append('shoes', createdShoesId); // Add the shoes ID
+        CategoryFormData.append('shoes_category_name', shoesData.shoes_category);
+
+        console.log("CategoryFormData",CategoryFormData)
+
+       const categoryData = await api.post("shoes_api/shoes_category/",CategoryFormData)
+       console.log("categoryData",categoryData)
+        
         // Reset form
         setShoesData({
           name: '',
@@ -105,18 +114,7 @@ const AddShoes = () => {
   }
   
   
-  const CategoryFormData=new FormData();
-  colorPhotoFormData.append('shoes', createdShoesId); // Add the shoes ID
-  colorPhotoFormData.append('shoes_category', shoesData.shoes_category);
-
-  api.post("shoes_api/shoes_category/",CategoryFormData)
-  .response((response)=>{
-    console.log(response)
-  })
-  .catch((error)=>{
-    console.log(error)
-  })
-   
+ 
   };
 
   return (
@@ -159,7 +157,7 @@ const AddShoes = () => {
             </div>
             <div className="form-group">
                 <label htmlFor="product_category">Shoes Category</label>
-                <select id="product_category" name="shoes_category"  onChange={handelInput} value={shoesData.product_category} required="" className="form-field">
+                <select id="product_category" name="shoes_category"  onChange={handelInput} value={shoesData.shoes_category} required="" className="form-field">
                   <option value="">Select category</option>
                   <option value="BOOTS">BOOTS</option>
                   <option value="CASUALS SHOES">CASUALS SHOES</option>
