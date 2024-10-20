@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -55,6 +56,18 @@ const UserProfile = () => {
     mobile_number: "",
   });
 
+  const [ProfilePasswordData, setProfilePasswordData] = useState({
+    password: "",
+    password2: "",
+  });
+
+  const inputHandler2 = (e) => {
+    setProfilePasswordData({
+      ...ProfilePasswordData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const inputHandler = (e) => {
     setProfileData({
       ...ProfileData,
@@ -64,13 +77,12 @@ const UserProfile = () => {
 
   const fileChangeHandler = (e) => {
     if (e.target.files[0]) {
-    setProfileData({
-      ...ProfileData,
-      [e.target.name]: e.target.files[0],
-    });
+      setProfileData({
+        ...ProfileData,
+        [e.target.name]: e.target.files[0],
+      });
     }
     setNewImageSelected(true);
-
   };
 
   const logout = () => {
@@ -89,7 +101,7 @@ const UserProfile = () => {
         .get("shoes_api/customer/" + CustomerId + "/")
         .then((response) => {
           console.log("response data:", response.data);
-          console.log("userprofile:",response.data.profile_photo)
+          console.log("userprofile:", response.data.profile_photo);
           setProfileData({
             user_id: response.data.user.id,
             first_name: response.data.user.first_name,
@@ -109,14 +121,14 @@ const UserProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     // Form data for the user fields
     const formUserData = new FormData();
     formUserData.append("first_name", ProfileData.first_name);
     formUserData.append("last_name", ProfileData.last_name);
     formUserData.append("username", ProfileData.username);
     formUserData.append("email", ProfileData.email);
-  
+
     // API call to update the user details
     api
       .put("/shoes_api/user/" + UserId + "/", formUserData)
@@ -126,21 +138,21 @@ const UserProfile = () => {
       .catch((error) => {
         console.log(error);
       });
-  
+
     // Form data for the customer fields
     const formData = new FormData();
     formData.append("user", UserId);
     formData.append("mobile_number", ProfileData.mobile_number);
     formData.append("address", ProfileData.address);
-  
+
     // Append file only if a new image is selected
     if (newImageSelected && ProfileData.profile_img instanceof File) {
       formData.append("profile_photo", ProfileData.profile_img); // Append the file
     } else if (!newImageSelected && ProfileData.profile_img) {
-    // You might want to send it to the backend as part of the data, if required.
+      // You might want to send it to the backend as part of the data, if required.
       formData.append("profile_photo", ProfileData.profile_img);
     }
-  
+
     // API call to update the customer details
     api
       .put("/shoes_api/customer/" + CustomerId + "/update/", formData, {
@@ -163,8 +175,24 @@ const UserProfile = () => {
           autoClose: 2000,
         });
       });
+
   };
-  
+
+  const changePassword=()=>{
+    const PasswordFormData=new FormData();
+    PasswordFormData.append("password",ProfilePasswordData.password);
+    api.post('shoes_api/customer/changePassword/'+CustomerId+"/",PasswordFormData)
+    .then((response)=>{
+      console.log(response);
+      setProfilePasswordData({
+        'password':'',
+        'password2':'',
+      })
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
 
   return (
     <>
@@ -173,7 +201,7 @@ const UserProfile = () => {
         {/* <div className="User_profile_navbar">
       </div> */}
         <div className="user_profile_text">
-          <p>Your Profile</p>
+          <p>Hey, {ProfileData.username}</p>
         </div>
         <div className="outer_user_profile">
           <div className="user_profile">
@@ -182,9 +210,7 @@ const UserProfile = () => {
             </label>
             <p id="profile_img">
               <img
-                src={
-                  ProfileData.profile_img ? ProfileData.profile_img : img
-                }
+                src={ProfileData.profile_img ? ProfileData.profile_img : img}
                 alt="Profile"
               />
             </p>
@@ -266,15 +292,47 @@ const UserProfile = () => {
               className="check_order_btn"
               onClick={() => navigate("/UserOrder")}
             >
-              Check Order status
+              <i
+                className="fa fa-shopping-cart"
+                style={{ fontSize: "20px" }}
+              ></i>
+              heck Order status
             </button>
             <br />
             <hr className="hr_box" />
             <br />
             <p>Account Management</p>
             <button className="logout_btn" onClick={logout}>
-              Log out
+              <i className="fa fa-sign-out" style={{ fontSize: "20px" }}></i>Log
+              out
             </button>
+            <br />
+            <hr className="hr_box" />
+            <br />
+            <div className="change_pass_div">
+              <p>Change Password</p>
+              <input
+                type="password"
+                placeholder="Enter Password:"
+                name="password"
+                value={ProfilePasswordData.password}
+                onChange={inputHandler2}
+              />
+              <input
+                type="password"
+                placeholder="Enter Password Again:"
+                name="password2"
+                value={ProfilePasswordData.password2}
+                onChange={inputHandler2}
+              />
+              <button className="change_btn" onClick={changePassword}>
+                <i
+                  className="fa fa-gear fa-spin"
+                  style={{ fontSize: "20px" }}
+                ></i>
+                Change
+              </button>
+            </div>
           </div>
         </div>
       </div>

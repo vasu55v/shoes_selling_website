@@ -28,6 +28,7 @@ urlpatterns = [
     path('customer/<int:pk>/',CustomerDetailView.as_view()),
     path('customer/<int:pk>/update/',CustomerDetailUpdateView.as_view()),
     path('customer/<int:pk>/delete/',CustomerDetailDeleteView.as_view()),
+    path('customer/changePassword/<int:customer_id>/',visitorUser_password_change),
 
     #customer review
     path('product/<int:id>/customer-review/',CustomerReviewView.as_view()),

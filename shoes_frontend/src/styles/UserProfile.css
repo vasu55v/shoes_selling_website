@@ -77,7 +77,8 @@
 
 .submit_btn,
 .logout_btn,
-.check_order_btn {
+.check_order_btn ,
+.change_btn{
   display: flex;
   width: 100%;
   height: 54px;
@@ -91,6 +92,8 @@
   transition: background-color 0.3s ease;
   border: none;
   font-family: intern;
+  font-size: 20px;
+  overflow: hidden;
 }
 
 
@@ -102,6 +105,12 @@
 .logout_btn {
   background: #B71C1C;
   color: #fff;
+}
+
+.change_btn{
+  margin-top: 5px;
+  background: #0339a767;
+  color: #000000;
 }
 
 .check_order_btn{
@@ -128,6 +137,20 @@
 .hr_box{
   border: 1px solid #00000065;
   width: 100%;
+}
+
+.change_pass_div{
+  width: 100%;
+}
+
+.change_pass_div input{
+  width: 100%;
+  height: 54px;
+  padding: 16px 24px;
+  padding: 20px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #dadada;
 }
 
 @media only screen and (min-width: 1024px) {

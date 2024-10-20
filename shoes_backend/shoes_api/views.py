@@ -252,7 +252,21 @@ def VisitorUser_login(request):
         message={"bool":False,"message":"Not Valid username or Password"}
 
     return JsonResponse(message)
-    
+
+
+@csrf_exempt
+def visitorUser_password_change(request,customer_id):
+    password=request.POST.get('password')
+    VisitorUser=Customer.objects.get(id=customer_id)
+    user=VisitorUser.user
+    user.password=make_password(password)
+    user.save()
+    msg={
+        'bool':True,
+        'message':'password has been changed'
+    } 
+
+    return JsonResponse(msg)
 
 
 #****************************category view****************************
