@@ -1,0 +1,166 @@
+.MainShoesContainer{
+    display: flex;
+}
+
+.shoesImageContainer{
+    width: 35%;
+}
+
+.detailShoesContainer{
+    width: 65%;
+    padding: 10px 80px;
+}
+
+.ShoesName{
+    font-size: 30px;
+}
+
+.Price{
+    font-size: 25px;
+}
+
+.AddToCart{
+    padding: 10px 100px;
+    margin:10px 0px;
+    border: 1px solid #dadada;
+    border-radius: 20px;
+    color: #fff;
+    background-color: black;
+    cursor: pointer;
+}
+
+.description{
+    max-width: 630px;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.Color{
+    color: black;
+}
+
+.Backbtn{
+    padding: 10px 50px;
+    margin:10px 0px;
+    border: 1px solid #dadada;
+    border-radius: 20px;
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.accordion{
+    max-width: 440px;
+    width: 100%;
+}
+
+.accordion li{
+    list-style: none;
+    width: 100%;
+    margin: 10px 0px 20px 0px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 1px 3px 4px #291a01;
+}
+
+.accordion li label{
+    display: flex;
+    align-items: center;
+    /* padding: 10px; */
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.accordion li label::before{
+    content: '+';
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+.accordion .content{
+    padding: 0 10px;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s,padding 0.5s        ;
+}
+
+.accordion input[type="checkbox"]:checked + label + .content{
+    max-height: 300px;
+    padding: 10px 10px 20px;
+}
+
+.accordion input[type="checkbox"]:checked + label::before{
+   content:'-';
+}
+
+@media only screen and (max-width: 1250px) {
+    .shoesImageContainer{
+        max-width: 300px;
+        width: 100%;
+    }
+
+    .shoesImageContainer img{
+        max-width: 300px;
+        width: 100%;
+    }
+    
+}
+
+@media only screen and (max-width: 650px) {
+    .MainShoesContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .shoesImageContainer{
+        max-width: 300px;
+        width: 100%;
+    }
+
+    .shoesImageContainer img{
+        max-width: 300px;
+        width: 100%;
+    }
+    
+    .detailShoesContainer{
+        max-width: 500px;
+        width: 100%;
+        padding: 10px 80px;
+    }
+    
+  }
+
+  @media only screen and (max-width: 420px) {
+    .MainShoesContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .shoesImageContainer{
+        max-width: 300px;
+        width: 100%;
+    }
+
+    .shoesImageContainer img{
+        max-width: 300px;
+        width: 100%;
+    }
+    
+    .detailShoesContainer{
+        width: 100%;
+        padding: 10px 80px;
+    }
+
+    .AddToCart{
+        padding: 10px 50px;
+    }
+  }

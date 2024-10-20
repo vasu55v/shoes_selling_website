@@ -19,6 +19,7 @@ import AddShoes from './components/AddShoes';
 import VendorLogin from './components/VendorLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ShoesPage from './components/ShoesPage';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AddShoes" element={<AddShoes />} />
+          <Route path="/Shoes" element={<ShoesPage />} />
           <Route path="/vendorlogin" element={<VendorLogin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
