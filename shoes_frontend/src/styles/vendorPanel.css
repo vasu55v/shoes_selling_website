@@ -75,23 +75,29 @@ color: red;
 
 .c_1{
     border-left: 5px solid rgb(255, 0, 0);
+    cursor: pointer;
 }
 
 .c_2{
     border-left: 5px solid rgb(41, 154, 3);
+    cursor: pointer;
 }
 
 .c_3{
     border-left: 5px solid rgb(255, 111, 0);
+    cursor: pointer;
 }
 
 .c_4{
     border-left: 5px solid rgb(136, 255, 0);
+    cursor: pointer;
 }
 .c_5{
     border-left: 5px solid rgb(28, 79, 173);
+    cursor: pointer;
 }
 
 .c_6{
     border-left: 5px solid rgb(255, 0, 0);
+    cursor: pointer;
 }

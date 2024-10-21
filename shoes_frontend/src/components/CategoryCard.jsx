@@ -1,16 +1,23 @@
 import React from "react";
 import "../styles/categoryCard.css";
+import boot from  '../assets/boot.png'
+import casual from  '../assets/casual.jpg'
+import flip from  '../assets/flip.webp'
+import formal from  '../assets/formal.webp'
+import sendal from  '../assets/sendal.jpg'
+import football from  '../assets/football.png'
+import sport from  '../assets/sport.webp'
 
 
 const CategoryData = [
   { id: 1, name: 'All Shoes', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png' },
-  { id: 2, name: 'BOOTS', image: 'https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_409,c_limit/0d8e5265-83c0-460b-843f-b6d3af7f8486/infinityrn-4-road-running-shoes-mLRjcz.png' },
-  { id: 3, name: 'CASUALS SHOES',  image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png' },
-  { id: 4, name: 'FLIP FLOPS', image: 'https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_409,c_limit/0d8e5265-83c0-460b-843f-b6d3af7f8486/infinityrn-4-road-running-shoes-mLRjcz.png' },
-  { id: 5, name: 'FORMAL SHOES', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png'},
-  { id: 6, name: 'SANDALS & FLOATERS  ',image: 'https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_409,c_limit/0d8e5265-83c0-460b-843f-b6d3af7f8486/infinityrn-4-road-running-shoes-mLRjcz.png' },
-  { id: 7, name: 'Football', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png'},
-  { id: 7, name: 'SPORTS SHOES & SNEAKERS',image: 'https://static.nike.com/a/images/q_auto:eco/t_product_v1/f_auto/dpr_1.0/h_409,c_limit/0d8e5265-83c0-460b-843f-b6d3af7f8486/infinityrn-4-road-running-shoes-mLRjcz.png'  },
+  { id: 2, name: 'BOOTS', image:boot },
+  { id: 3, name: 'CASUALS SHOES',  image: casual },
+  { id: 4, name: 'FLIP FLOPS', image: flip },
+  { id: 5, name: 'FORMAL SHOES', image: formal},
+  { id: 6, name: 'SANDALS & FLOATERS  ',image: sendal },
+  { id: 7, name: 'Football', image:football},
+  { id: 7, name: 'SPORTS SHOES & SNEAKERS',image: sport },
 ];
 
 const Category  = ({name,image}) => {

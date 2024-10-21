@@ -296,7 +296,7 @@ const UserProfile = () => {
                 className="fa fa-shopping-cart"
                 style={{ fontSize: "20px" }}
               ></i>
-              heck Order status
+              check Order status
             </button>
             <br />
             <hr className="hr_box" />

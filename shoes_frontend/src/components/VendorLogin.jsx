@@ -4,7 +4,9 @@ import google from '../assets/google.png'
 import { redirect, useNavigate } from 'react-router-dom'
 import api from '../../Api'
 import { ACCESS_TOKEN,REFRESH_TOKEN } from '../../Constants'
+import {toast } from "react-toastify";
 import  Cookies  from 'js-cookie';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 const VendorLogin = () => {
     // const [username, setUsername] = useState("");
     // const [password, setPassword] = useState("");
@@ -42,9 +44,12 @@ const VendorLogin = () => {
                   Cookies.set("vendor_id",response.data.vendor_user_id,{expires: 7}) // Expires in 7 days
                   navigate('/vendorpanel')
                 }
+                if(response.data.bool==false){
+                  toast.error("You are not a vendor please login as customer...!",{autoClose:2000})
+                }
             })
             .catch((error)=>{
-              alert("You are not a vendor please login as customer...!")
+              toast.error("You are not a vendor please login as customer...!",{autoClose:2000})
               console.log(error);
             })              
     };
