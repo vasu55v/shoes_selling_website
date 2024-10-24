@@ -11,6 +11,8 @@ urlpatterns = [
     path('shoes-update/<int:pk>/',ShoesUpdateViewSet.as_view()),
     path('shoes-delete/<int:pk>/',ShoesDeleteViewSet.as_view()),
 
+    path('shoes_data/',shoes_data),
+
 
     #color&photo
     path('color_photo/',ColorAndPhotosListView.as_view()),

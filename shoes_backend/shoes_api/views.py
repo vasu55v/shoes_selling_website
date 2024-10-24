@@ -356,3 +356,71 @@ class OrderStatusUpdateView(generics.RetrieveUpdateAPIView):
 #     total_order=Order.objects.all().count()
 
     
+# *******************************shoes data view*********************************
+
+# def shoes_data(request):
+#     shoes=Shoes.objects.all()
+#     category=Category.objects.all()
+#     color_photo=Color_And_Photos.objects.all()
+
+#     shoes_detail={
+#         'shoes_id':shoes.id,
+#         'shoes_name':shoes.name,
+#         'shoes_category':shoes.product_category,
+#         'gender':shoes.gender,
+#         'size':shoes.size,
+#         'price':shoes.price,
+#         'description':shoes.description,
+#         'category':{
+#             'category_shoes_id':category.shoes.id,
+#             'shoes_category_name':category.shoes_category_name,
+#         },
+#         'color_photo':{
+#             'color_photo_shoes_id':color_photo.shoes.id,
+#             'color':color_photo.color_name,
+#             'photo':color_photo.photos,
+#         }
+#     }
+
+#     return JsonResponse(shoes_detail)
+
+def shoes_data(request):
+    # Get all shoes
+    shoes = Shoes.objects.all()
+    shoes_list = []
+    
+    for shoe in shoes:
+        # Get related categories for current shoe
+        categories = Category.objects.filter(shoes=shoe)
+        category_data = []
+        for category in categories:
+            category_data.append({
+                'category_shoes_id': category.shoes.id,
+                'shoes_category_name': category.shoes_category_name,
+            })
+        
+        # Get related colors and photos for current shoe
+        colors_photos = Color_And_Photos.objects.filter(shoes=shoe)
+        color_photo_data = []
+        for color_photo in colors_photos:
+            color_photo_data.append({
+                'color_photo_shoes_id': color_photo.shoes.id,
+                'color': color_photo.color_name,
+                'photo': str(color_photo.photos.url) if color_photo.photos else None,
+            })
+        
+        # Create shoe detail dictionary with all related data
+        shoe_detail = {
+            'shoes_id': shoe.id,
+            'shoes_name': shoe.name,
+            'shoes_category': shoe.product_category,
+            'gender': shoe.gender,
+            'size': shoe.size,
+            'price': str(shoe.price),  # Convert Decimal to string for JSON serialization
+            'description': shoe.description,
+            'categories': category_data,
+            'colors_and_photos': color_photo_data
+        }
+        shoes_list.append(shoe_detail)
+    
+    return JsonResponse({'shoes': shoes_list}, safe=False)
