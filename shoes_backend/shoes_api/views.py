@@ -358,32 +358,6 @@ class OrderStatusUpdateView(generics.RetrieveUpdateAPIView):
     
 # *******************************shoes data view*********************************
 
-# def shoes_data(request):
-#     shoes=Shoes.objects.all()
-#     category=Category.objects.all()
-#     color_photo=Color_And_Photos.objects.all()
-
-#     shoes_detail={
-#         'shoes_id':shoes.id,
-#         'shoes_name':shoes.name,
-#         'shoes_category':shoes.product_category,
-#         'gender':shoes.gender,
-#         'size':shoes.size,
-#         'price':shoes.price,
-#         'description':shoes.description,
-#         'category':{
-#             'category_shoes_id':category.shoes.id,
-#             'shoes_category_name':category.shoes_category_name,
-#         },
-#         'color_photo':{
-#             'color_photo_shoes_id':color_photo.shoes.id,
-#             'color':color_photo.color_name,
-#             'photo':color_photo.photos,
-#         }
-#     }
-
-#     return JsonResponse(shoes_detail)
-
 def shoes_data(request):
     # Get all shoes
     shoes = Shoes.objects.all()

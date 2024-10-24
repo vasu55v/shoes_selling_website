@@ -4,6 +4,7 @@
   import { ScrollContext } from '../Context';
   import api from '../../Api';
 
+
   const Products=[
     { id: 1,price:10000, name: 'Running Shoes', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png' },
     { id: 2,price:10000, name: 'Running Shoes', image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png' },
@@ -42,53 +43,7 @@
       </div>
     );
   };
-  
-  // const AllProducts = () => {
-  //   const [isVisible, setIsVisible] = useState(false);
-  
-  //   const scrollUpFunc = () => {
-  //     window.scrollTo({
-  //       top: 0,
-  //       behavior: 'smooth',
-  //     });
-  //   };
-  
-  //   const toggleVisibility = () => {
-  //     if (window.scrollY > 300) {
-  //       setIsVisible(true);
-  //     } else {
-  //       setIsVisible(false);
-  //     }
-  //   };
-  
-  //   useEffect(() => {
-  //     window.addEventListener('scroll', toggleVisibility);
-  //     return () => window.removeEventListener('scroll', toggleVisibility);
-  //   }, []);  
-  
-  //   return (
-  //     <div className='all_products_div'>
-  //       <div className='all_products'>
-  //         <div className='navbar'>
-  //           <Navbar />
-  //         </div>
-  //         <div className='shoe-card-grid'>
-  //           {Products.map((item) => (
-  //             <ShoeCard key={item.id} price={item.price} name={item.name} image={item.image} />
-  //           ))}
-  //         </div>
-  //       </div>
-  
-  //       {isVisible && (
-  //         <button className='up-arrow' onClick={scrollUpFunc} aria-label="Scroll to top">
-  //           &#11014; 
-  //         </button>
-  //       )}
-  //     </div>
-  //   );
-  // };
-  
-  // export default AllProducts;
+
 
 
   const AllProducts = () => {
@@ -98,11 +53,14 @@
      const [shoesData,setShoesData]=useState([]);
      const [shoesIdData,setShoesIdData]=useState([]);
 
+     const url=api+"/shoes_api"
+
      useEffect(()=>{
-      api.get('shoes_api/shoes/')
+      api.get('shoes_api/shoes_data/')
       .then((response)=>{
-      //  console.log(response.data);
-       setShoesData(response.data);
+       console.log(response.data.shoes);
+       setShoesData(response.data.shoes);
+       console.log(response.data.shoes[0].colors_and_photos[0].photo)
        
       })
       .catch((error)=>{
@@ -118,7 +76,8 @@
           </div>
           <div className='shoe-card-grid'>
             {shoesData.map((item) => (
-              <ShoeCard key={item.id} price={item.price} name={item.name} image={item.image} />
+                <>
+              <ShoeCard key={item.id} price={item.price} name={item.shoes_name} image={"http://127.0.0.1:8000/"+item.colors_and_photos[0]?.photo} />              </>
             ))}
           </div>
         </div>
