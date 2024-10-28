@@ -12,6 +12,7 @@ urlpatterns = [
     path('shoes-delete/<int:pk>/',ShoesDeleteViewSet.as_view()),
 
     path('shoes_data/',shoes_data),
+    path('shoes_data/<str:category>/',AllCategoryShoesView),
 
 
     #color&photo
