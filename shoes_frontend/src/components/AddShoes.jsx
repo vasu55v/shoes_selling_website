@@ -3,6 +3,7 @@ import '../styles/AddShoes.css'
 import Navbar from "./Navbar";
 import  Cookies  from 'js-cookie';
 import api from '../../Api'
+// import { toast } from "sonner"
 
 const AddShoes = () => {
 
@@ -82,7 +83,6 @@ const AddShoes = () => {
         );
     
         // Handle successful submission
-        alert('Shoes and color details added successfully!');
         
         const CategoryFormData=new FormData();
         CategoryFormData.append('shoes', createdShoesId); // Add the shoes ID
@@ -106,6 +106,7 @@ const AddShoes = () => {
           shoes_category:'',
         });
         setSelectedImage(null);
+        toast("Shoe has been added.")
     
       } catch (error) {
         console.error('Error submitting form:', error);

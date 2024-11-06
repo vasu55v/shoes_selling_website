@@ -73,7 +73,7 @@ const Mens = () => {
         </div>
         <div className='shoe-card-grid'>
           {shoesData.map((item) => (
-            <ShoeCard key={item.id} price={item.price} name={item.name} image={"http://127.0.0.1:8000/"+item.colors_and_photos[0]?.photo} />
+            <ShoeCard key={item.id} price={item.price} name={item.shoes_name} image={"http://127.0.0.1:8000/"+item.colors_and_photos[0]?.photo} />
           ))}
         </div>
       </div>

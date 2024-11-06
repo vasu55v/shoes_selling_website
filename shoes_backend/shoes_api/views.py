@@ -458,7 +458,7 @@ def shoes_data(request):
 def AllCategoryShoesView(request, category):
     try:
         # Filter shoes directly by product_category (men/women/kids)
-        shoes = Shoes.objects.filter(product_category=category)
+        shoes = Shoes.objects.filter(product_category=category).order_by('-id') 
         shoes_list = []
         
         for shoe in shoes:
