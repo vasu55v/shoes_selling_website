@@ -20,6 +20,7 @@ import VendorLogin from './components/VendorLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ShoesPage from './components/ShoesPage';
+import ShoesByCategory from './components/ShoesByCategory';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/AddShoes" element={<AddShoes />} />
           <Route path="/Shoes/:id" element={<ShoesPage />} />
           <Route path="/vendorlogin" element={<VendorLogin />} />
+          <Route path="/ShoesByCategory" element={<ShoesByCategory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>

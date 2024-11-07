@@ -17,6 +17,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
+from django.db.models import Q
 
 
 
@@ -554,3 +555,68 @@ def single_shoes_data(request,shoes_id):
         shoes_list.append(shoe_detail)
     
     return JsonResponse({'shoes': shoes_list}, safe=False)
+
+
+def AllShoesCategoryShoesView(request, category):# such as BOOTS ,CASUALS SHOES ,FLIP FLOPS etc.
+    try:
+        shoes=Shoes.objects.all().order_by('-id')
+        shoes_list = []
+        
+        for shoe in shoes:
+            # Get all categories (BOOTS, CASUALS, etc.) for this shoe
+            categories = Category.objects.filter(shoes=shoe) 
+            category_list = []
+            for cat in categories:
+                category_list.append({
+                    'category_shoes_id': cat.shoes.id,
+                    'shoes_category_name': cat.shoes_category_name,
+                })
+            
+            # Get all colors and photos for this shoe
+            colors_photos = Color_And_Photos.objects.filter(shoes=shoe)
+            color_photo_data = []
+            for color_photo in colors_photos:
+                color_photo_data.append({
+                    'color_photo_shoes_id': color_photo.shoes.id,
+                    'color': color_photo.color_name,
+                    'photo': str(color_photo.photos.url) if color_photo.photos else None,
+                })
+            
+            # Create shoe detail dictionary
+            shoe_detail = {
+                'shoes_id': shoe.id,
+                'shoes_name': shoe.name,
+                'shoes_category': shoe.product_category,
+                'gender': shoe.gender,
+                'size': shoe.size,
+                'price': str(shoe.price),
+                'description': shoe.description,
+                'categories': category_list,  # This will contain BOOTS, CASUALS, etc.
+                'colors_and_photos': color_photo_data
+            }
+
+            # if any(cat['shoes_category_name'] == category for cat in category_list):
+            #     shoes_list.append(shoe_detail)
+
+            for cat in category_list:
+                if cat['shoes_category_name'] == category:
+                    shoes_list.append(shoe_detail)
+        
+        if not shoes_list:
+            return JsonResponse({
+                'status': 'success',
+                'message': f'No shoes found for category: {category}',
+                'shoes': []
+            })
+        
+        return JsonResponse({
+            'status': 'success',
+            'count': len(shoes_list),
+            'shoes': shoes_list
+        }, safe=False)
+        
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)

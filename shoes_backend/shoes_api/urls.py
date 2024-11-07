@@ -15,6 +15,8 @@ urlpatterns = [
     path('shoes_data/<str:category>/',AllCategoryShoesView),
     path('shoes_data/shoe/<str:shoes_id>/',single_shoes_data),
 
+    path('shoes_data/category/<str:category>/',AllShoesCategoryShoesView),
+
     #color&photo
     path('color_photo/',ColorAndPhotosListView.as_view()),
     path('color_photo_create/',ColorAndPhotosCreateView.as_view()),
