@@ -44,7 +44,7 @@ function App() {
           <Route path="/AddShoes" element={<AddShoes />} />
           <Route path="/Shoes/:id" element={<ShoesPage />} />
           <Route path="/vendorlogin" element={<VendorLogin />} />
-          <Route path="/ShoesByCategory" element={<ShoesByCategory />} />
+          <Route path="/ShoesByCategory/:category" element={<ShoesByCategory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>

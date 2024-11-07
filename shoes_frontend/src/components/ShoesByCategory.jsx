@@ -3,6 +3,7 @@ import {ScrollContext} from  '../Context.jsx'
 import Navbar from './Navbar'
 import '../styles/allProducts.css'
 import api from '../../Api.jsx'
+import { useParams } from 'react-router-dom'
 
 
 
@@ -21,10 +22,17 @@ const ShoesByCategory = () => {
   const context = useContext(ScrollContext);
   const { isVisible, scrollRef, scrollUpFunc } = context;
 
+  const {category}=useParams();
   const [shoesData,setShoesData]=useState([]);
 
+  const cate={category};
+  const cateValue=(cate.category)
+  cateValue.toUpperCase();
+  console.log( cateValue.toUpperCase())
+
   useEffect(()=>{
-    api.get('shoes_api/shoes_data/kids/')
+   
+    api.get('shoes_api/shoes_data/category/'+cateValue+'/')
     .then((response)=>{
      console.log(response.data.shoes);
      setShoesData(response.data.shoes);
@@ -42,7 +50,7 @@ const ShoesByCategory = () => {
     <div className='all_products_div' ref={scrollRef}>
       <div className='all_products'>
         <div className='men_title'>
-            <h1>Kid's shoes</h1>
+            <h1>{category}</h1>
             <center><hr /></center>
         </div>
         <div className='shoe-card-grid'>
