@@ -3,15 +3,20 @@
   import '../styles/allProducts.css'
   import { ScrollContext } from '../Context';
   import api from '../../Api';
+  import { useNavigate } from 'react-router-dom';
 
+  const ShoeCard = ({ shoes_id,price, name, image }) => {
+    const navigate = useNavigate();
 
-  const ShoeCard = ({ price, name, image }) => {
+    const redirectPage=(id)=>{
+        navigate('/shoes/'+id+'/')
+    }
     return (
       <div className="shoe-card">
         <img src={image} alt={name} className="shoe-image" />
         <h2 className="shoe-name">{name}</h2>
         <h2 className="shoe-price">${price.toLocaleString()}</h2>
-        <button className="add-to-cart-btn">Add to Cart</button>
+        <button className="add-to-cart-btn" onClick={()=>redirectPage(shoes_id)}>View</button>
       </div>
     );
   };
@@ -48,7 +53,7 @@
           <div className='shoe-card-grid'>
             {shoesData.map((item) => (
                 <>
-              <ShoeCard key={item.id} price={item.price} name={item.shoes_name} image={"http://127.0.0.1:8000/"+item.colors_and_photos[0]?.photo} />              </>
+              <ShoeCard key={item.id} shoes_id={item.shoes_id} price={item.price} name={item.shoes_name} image={"http://127.0.0.1:8000/"+item.colors_and_photos[0]?.photo} />              </>
             ))}
           </div>
         </div>
