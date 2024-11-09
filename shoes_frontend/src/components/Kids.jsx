@@ -15,7 +15,7 @@ const ShoeCard = ({ shoes_id,price, name, image }) => {
     <div className="shoe-card">
       <img src={image} alt={name} className="shoe-image" />
       <h2 className="shoe-name">{name}</h2>
-      <h2 className="shoe-price">${price.toLocaleString()}</h2>
+      <h2 className="shoe-price">₹{price.toLocaleString()}</h2>
       <button className="add-to-cart-btn" onClick={()=>redirectPage(shoes_id)}>View</button>
     </div>
   );

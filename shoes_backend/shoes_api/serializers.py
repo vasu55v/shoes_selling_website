@@ -76,6 +76,12 @@ class OrderSerializer(serializers.ModelSerializer):
      class Meta:
         model=Order
         fields=['id','customer','order_time']
+        
+class OrderNormalSerializer(serializers.ModelSerializer):
+     class Meta:
+        model=Order
+        fields=['id','customer','order_time']
+
 
 class OrderItemSerializer(serializers.ModelSerializer):
      order=OrderSerializer()

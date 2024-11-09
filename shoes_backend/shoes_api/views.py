@@ -620,3 +620,48 @@ def AllShoesCategoryShoesView(request, category):# such as BOOTS ,CASUALS SHOES 
             'status': 'error',
             'message': str(e)
         }, status=500)
+    
+@csrf_exempt
+def customer_order_view(request):
+    customer=request.POST.get('customer')
+    # order=request.POST.get('order')
+    shoes=request.POST.get('shoes')
+    qty=request.POST.get('qty')
+    price=request.POST.get('price')
+    
+    try:
+        order=Order.objects.create(
+            customer=customer,
+        )
+
+        if order:
+            try:
+              orderItem = Order_item.objects.create(
+                order=order,
+                shoes=shoes,
+                qty=qty,
+                price=price,
+            )
+
+              message = {
+                    "bool": True,
+                    "order_id": order.id,
+                    "orderItem_id": orderItem.id,
+                    "message": "Order Has been placed.Thanks for shopping. ",
+                }
+            except IntegrityError:
+                message={"bool":False,"message":"Oops something went wrong in creating order item....!"}
+
+        else:
+            message={"bool":False,"message":"oops something went wrong....!"}
+
+
+    except IntegrityError:
+         message={"bool":False,"message":"Order already exist. oops something went wrong....! at the last"}
+
+    return JsonResponse(message)
+
+class OrderView(generics.ListCreateAPIView):
+    queryset=Order.objects.all()
+    serializer_class=OrderNormalSerializer                                              
+    permission_classes=[AllowAny]

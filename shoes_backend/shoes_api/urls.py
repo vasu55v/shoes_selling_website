@@ -39,8 +39,11 @@ urlpatterns = [
     path('product/<int:id>/customer-review/',CustomerReviewView.as_view()),
     path('product/customer-review/<str:pk>/delete/',CustomerReviewDeleteView.as_view()),
 
+    #order
+    path('order/',OrderView.as_view()),
     #order_of_customer
-    path('customer/<int:pk>/orderItem/',views.order_of_customer.as_view()),     
+    path('customer/<int:pk>/orderItem/',views.order_of_customer.as_view()),  
+    path('customer/order/create/',customer_order_view),   
 
     #order status change url for vendor
     path('OrderStatus/',views.OrderStatusView.as_view()),  
