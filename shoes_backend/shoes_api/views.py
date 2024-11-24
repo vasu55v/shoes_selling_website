@@ -18,6 +18,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 
 
@@ -68,6 +69,17 @@ class ColorAndPhotosListView(generics.ListAPIView):
     queryset=Color_And_Photos.objects.all()
     serializer_class=ColorAndPhotosDetailSerializer
     permission_classes=[AllowAny]
+
+class ShoesColorAndPhotosListView(generics.ListAPIView):
+    queryset=Color_And_Photos.objects.all()
+    serializer_class=ColorAndPhotosDetailSerializer
+    permission_classes=[AllowAny]
+
+    def get_queryset(self):
+        qs=super().get_queryset()
+        shoes_id=self.kwargs["pk"]
+        qs=qs.filter(shoes=shoes_id)
+        return qs
 
 
 class ColorAndPhotosCreateView(generics.CreateAPIView):
@@ -620,7 +632,9 @@ def AllShoesCategoryShoesView(request, category):# such as BOOTS ,CASUALS SHOES 
             'status': 'error',
             'message': str(e)
         }, status=500)
-    
+
+
+
 @csrf_exempt
 def customer_order_view(request):
     customer=request.POST.get('customer')
@@ -630,15 +644,18 @@ def customer_order_view(request):
     price=request.POST.get('price')
     
     try:
+
+        customer_instance=get_object_or_404(Customer,id=customer)
+        shoes_instance=get_object_or_404(Shoes,id=shoes)
         order=Order.objects.create(
-            customer=customer,
+            customer=customer_instance,
         )
 
         if order:
             try:
               orderItem = Order_item.objects.create(
                 order=order,
-                shoes=shoes,
+                shoes=shoes_instance,
                 qty=qty,
                 price=price,
             )
@@ -647,7 +664,8 @@ def customer_order_view(request):
                     "bool": True,
                     "order_id": order.id,
                     "orderItem_id": orderItem.id,
-                    "message": "Order Has been placed.Thanks for shopping. ",
+                    "customer_instance":customer_instance.id,
+                    "message": "Order Has been placed.Thanks for shopping.",
                 }
             except IntegrityError:
                 message={"bool":False,"message":"Oops something went wrong in creating order item....!"}

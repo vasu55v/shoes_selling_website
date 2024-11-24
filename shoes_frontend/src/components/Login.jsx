@@ -6,7 +6,8 @@
     import { ACCESS_TOKEN,REFRESH_TOKEN } from '../../Constants'
     import { toast } from "react-toastify";
     import { jwtDecode } from 'jwt-decode';
-
+    import  Cookies  from 'js-cookie';
+    
     const Login = () => {
 
         const [username, setUsername] = useState("");
@@ -29,12 +30,7 @@
                     navigate("/")
                     console.table(res)
                     console.log("access:",res.access)
-                    console.log("refresh:",res.refresh)
-
-
-                  
-                   
-
+                    console.log("refresh:",res.refresh)               
             } catch (error) {
                 console.log("error:",error)
                 toast.error("Please enter correct username or password ",{autoClose:2000})

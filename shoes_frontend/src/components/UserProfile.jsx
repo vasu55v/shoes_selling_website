@@ -37,7 +37,8 @@ const UserProfile = () => {
       console.log(user_id.user_id);
       const UserData = customerData.find((obj) => obj.user === user_id.user_id);
       if (UserData) {
-        console.log("userdata:", UserData.id);
+        // console.log("userdata:", UserData.id);
+        Cookies.set("customer_id", UserData.id);
         setCustomerId(UserData.id);
       } else {
         console.log("User not found in customerData");

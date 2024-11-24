@@ -5,6 +5,8 @@ import Navbar from "./Navbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import api from "../../Api.jsx";
 import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
+
 
 const ShoesPage = () => {
   const [shoesData, setShoesData] = useState([]);
@@ -12,7 +14,7 @@ const ShoesPage = () => {
   const [shoesDataColor, setShoesDataColor] = useState([]);
   const { id } = useParams();
 
-  const customerId=localStorage.getItem('userid');
+  const customerId=Cookies.get("customer_id");
   const [shoesPrice, setShoesPrice] = useState(null);
 
   useEffect(() => {

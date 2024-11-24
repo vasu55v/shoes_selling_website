@@ -62,6 +62,9 @@ const Navbar = () => {
             <a href="/products" className="nav-link">All products</a>
           </li>
           <li className="nav-item">
+            <a href="/usercheckout" className="nav-link">Check Out</a>
+          </li>
+          <li className="nav-item">
             <a href="/men" className="nav-link">Men</a>
           </li>
           <li className="nav-item">

@@ -20,6 +20,7 @@ urlpatterns = [
     #color&photo
     path('color_photo/',ColorAndPhotosListView.as_view()),
     path('color_photo_create/',ColorAndPhotosCreateView.as_view()),
+    path('color_photo_shoes/<int:pk>/',ShoesColorAndPhotosListView.as_view()),
     path('color_photo_update/<int:pk>/',ColorAndPhotosUpdateViewSet.as_view()),
     path('color_photo_delete/<int:pk>/',ColorAndPhotosDeleteViewSet.as_view()),
 
