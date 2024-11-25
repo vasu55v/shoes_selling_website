@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import api from "../../Api.jsx";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
 
 
 const ShoesPage = () => {
@@ -41,6 +42,7 @@ const ShoesPage = () => {
       api.post('shoes_api/customer/order/create/',formData)
       .then((response)=>{
         console.log(response)
+        toast.success("Shoes added to the cart",autoclose="2000");
       })
       .catch((error)=>{
         console.log(error)

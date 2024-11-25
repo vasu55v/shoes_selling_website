@@ -3,6 +3,8 @@ import "../styles/userCheckOut.css";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import api from "../../Api";
+import { Trash2, MousePointerClick } from 'lucide-react';
+
 
 const UserCheckOut = () => {
   const [orderUserData, setOrderUserData] = useState([]);
@@ -11,6 +13,10 @@ const UserCheckOut = () => {
   const navigate = useNavigate();
   const redirectToHome = () => {
     navigate("/");
+  };
+
+  const redirectToAllProduct = () => {
+    navigate("/products");
   };
 
   useEffect(() => {
@@ -91,6 +97,20 @@ const UserCheckOut = () => {
       </div>
     );
   };
+  
+    const deleteItem=(order_id)=>{
+      api.delete('shoes_api/customer/'+Cookies.get("customer_id")+'/order/'+order_id+'/delete/')
+      .then((response)=>{
+        console.log(response)
+        if(response.status==204){
+          location.reload();
+        }
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }
+  
 
   return (
     <>
@@ -104,7 +124,7 @@ const UserCheckOut = () => {
         <div className="second_container">
           <div className="Order_summery">
             <h1>ORDER Summary</h1>
-            {orderUserData && (
+            {orderUserData.length>0 && (
               <table>
                 <thead>
                   <tr>
@@ -128,19 +148,26 @@ const UserCheckOut = () => {
                         />
                       </td>
                       <td>${item.subTotal.toFixed(2)}</td>
+                      <td><Trash2 className="remove_bin" onClick={()=>deleteItem(item.order.id)}/></td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <hr />
                   <tr className="table_total">
-                    <td colSpan={4}>Total</td>
+                    <td colSpan={4}>Total=</td>
                     <td>${totalPrice.toFixed(2)}</td>
                   </tr>
                   <hr />
                 </tfoot>
               </table>
             )}
+            {!orderUserData.length>0&&
+               <>
+               <p className="exploreTxt">Cart is empty please select some item.<MousePointerClick className="clickIcon"/></p>
+               <center><button className="explore_btn" onClick={redirectToAllProduct}>Explore</button></center>
+               </>
+            }
           </div>
         </div>
         <div class="con">

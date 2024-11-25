@@ -46,9 +46,8 @@ table{
 }
 
 .image_checkout{
-    max-width: 200px;
-    height:100px;
-
+    max-width: 130px;
+    height:50px;
 }
 
 .product-container {
@@ -87,7 +86,36 @@ table{
   strong {
     font-weight: bold;
   }
-  
+
+  .remove_bin{
+    float: right;
+    color: rgb(0, 0, 0);
+    background-color: #ffffffc4;
+    border-radius: 5px;
+  }
+  .remove_bin:hover{
+    color: red;
+    cursor: pointer;
+  }
+
+  .exploreTxt{
+    color: #000000;
+    font-size: 20px;
+    text-align: center;
+    font-family:'roboto';
+  }
+
+  .clickIcon{
+    color: #fa0000ce;
+  }
+
+  .explore_btn{
+    padding: 10px 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #00000064;
+    cursor: pointer;
+  }
 
 @media screen and (max-width: 880px) {
     .userCheckOutContainer{
@@ -95,7 +123,6 @@ table{
         flex-direction:column ;
         justify-content: center;
         margin: 20px;
-    
     }
 
     table{
