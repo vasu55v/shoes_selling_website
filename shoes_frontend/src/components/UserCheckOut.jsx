@@ -21,7 +21,7 @@ const UserCheckOut = () => {
 
   useEffect(() => {
     api
-      .get("shoes_api/customer/" + Cookies.get("customer_id") + "/orderItem/")
+      .get("shoes_api/customer/" + Cookies.get("Customer_id") + "/orderItem/")
       .then((response) => {
         const data = response.data.map((item) => ({
           ...item,
@@ -99,7 +99,7 @@ const UserCheckOut = () => {
   };
   
     const deleteItem=(order_id)=>{
-      api.delete('shoes_api/customer/'+Cookies.get("customer_id")+'/order/'+order_id+'/delete/')
+      api.delete('shoes_api/customer/'+Cookies.get("Customer_id")+'/order/'+order_id+'/delete/')
       .then((response)=>{
         console.log(response)
         if(response.status==204){

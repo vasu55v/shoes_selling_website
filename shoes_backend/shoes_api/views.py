@@ -683,3 +683,8 @@ class OrderView(generics.ListCreateAPIView):
     queryset=Order.objects.all()
     serializer_class=OrderNormalSerializer                                              
     permission_classes=[AllowAny]
+
+class OrderDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Order.objects.all()
+    serializer_class=OrderNormalSerializer                                              
+    permission_classes=[AllowAny]

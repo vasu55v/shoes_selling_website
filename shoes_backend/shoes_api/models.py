@@ -70,9 +70,7 @@ class Category(models.Model):
     
     def __str__(self):
         return  f"{self.shoes.name}----------------------{self.shoes_category_name}"
-
-
-    
+   
 class Color_And_Photos(models.Model):
     shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)
     color_name=models.CharField(max_length=150)
@@ -80,7 +78,6 @@ class Color_And_Photos(models.Model):
 
     def __str__(self):
         return  f"{self.shoes.name}----------------------{self.color_name}"
-
 
 class Order(models.Model):
     customer=models.ForeignKey(Customer,on_delete=models.CASCADE,related_name="customer_orders")
@@ -107,7 +104,6 @@ class OrderStatusByVendor(models.Model):
     
 # class ConfirmOrderWithAddress(models.Model):
 #     Order_item=models.ForeignKey(Order_item,on_delete=models.CASCADE)
-
     
 class Shoes_review(models.Model):
     shoes=models.ForeignKey(Shoes,on_delete=models.CASCADE)

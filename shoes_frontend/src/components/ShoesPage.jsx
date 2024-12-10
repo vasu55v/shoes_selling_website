@@ -15,8 +15,23 @@ const ShoesPage = () => {
   const [shoesDataColor, setShoesDataColor] = useState([]);
   const { id } = useParams();
 
-  const customerId=Cookies.get("customer_id");
+  const customerId=Cookies.get("Customer_id");
+  const custId=Cookies.get("Customer_id");
+  console.log(custId)
+
   const [shoesPrice, setShoesPrice] = useState(null);
+
+  const [isDisabled, setIsDisabled] = useState(false);
+      useEffect(()=>{
+        if(!custId)setIsDisabled(true);
+      },[])
+
+      const showMessage=()=>{
+        alert("Please login First")
+      }
+
+
+      
 
   useEffect(() => {
     api
@@ -69,7 +84,12 @@ const ShoesPage = () => {
               <br />
               (Also includes all applicable duties)
             </p>
+            {!isDisabled &&
             <button className="AddToCart" onClick={AddToCart}>Add To Cart</button>
+            }
+            {isDisabled &&
+            <button className="AddToCart" onClick={showMessage}>Add To Cart</button>
+            }
             <p className="description">
               {shoesData.description}
             </p>

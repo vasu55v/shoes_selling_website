@@ -44,6 +44,7 @@ urlpatterns = [
     path('order/',OrderView.as_view()),
     #order_of_customer
     path('customer/<int:pk>/orderItem/',views.order_of_customer.as_view()),  
+    path('customer/<int:id>/order/<int:pk>/delete/',views.OrderDeleteView.as_view()),    
     path('customer/order/create/',customer_order_view),   
 
     #order status change url for vendor
